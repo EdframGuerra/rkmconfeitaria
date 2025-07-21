@@ -1,0 +1,41 @@
+/* Estilos para o Card de Comentário (Depoimento) */
+
+.comment-card {
+  /* Tailwind: bg-amber-50 rounded-xl p-6 shadow-md hover:shadow-lg */
+  transition: all 0.3s ease; /* Transição para o efeito hover */
+  min-height: 180px; /* Altura mínima para manter a consistência */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.comment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.comment-card .flex.items-center.mb-4 {
+  /* Tailwind: flex items-center mb-4 */
+}
+
+.comment-card .w-12.h-12.rounded-full {
+  /* Tailwind: w-12 h-12 rounded-full bg-pink-400 flex items-center justify-center text-white font-bold text-xl mr-4 */
+}
+
+.comment-card h4 {
+  /* Tailwind: font-bold text-pink-600 */
+}
+
+.comment-card .flex.text-amber-400 {
+  /* Tailwind: flex text-amber-600 */
+}
+
+.comment-card .fas.fa-star {
+  /* Estilo base das estrelas */
+  margin-right: 2px; /* Pequeno espaçamento entre as estrelas */
+}
+
+.comment-card .text-gray-700 {
+  /* Tailwind: text-gray-700 */
+  flex-grow: 1; /* Faz o texto do depoimento ocupar o espaço restante */
+}

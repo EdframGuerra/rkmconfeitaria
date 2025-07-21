@@ -1,1 +1,50 @@
-<p>home.layout works!</p>
+<!-- home.component.html -->
+<div class="flex flex-col gap-8 p-4">
+  <!-- Título e subtítulo institucionais -->
+  <div class="text-center">
+    <h4 class="text-4xl font-semibold text-pink-500">RKM Confeitaria <br></h4>
+    <p class="text-lg from-rosa-confeitaria text-pink-400">
+      Nossos produtos são cuidadosamente preparados com ingredientes nobres e um toque de delicadeza. Mais do que doces, entregamos experiências que encantam os sentidos e transformam momentos simples em memórias inesquecíveis.
+    </p>
+  </div>
+
+  <!-- Carrossel de destaques -->
+  <div>
+    <app-highlights-carousel></app-highlights-carousel>
+  </div>
+
+  <!-- Seção de produtos -->
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <app-product-card
+      *ngFor="let product of products"
+      [productData]="product">
+    </app-product-card>
+  </div>
+  <div>
+    <app-button (onClick)="goToCardapioCompleto()">Cardápio completo</app-button>
+  </div>
+
+  <!-- Cadastre-se e fale conosco -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <app-incentive-card></app-incentive-card>
+    <app-contact-form></app-contact-form>
+  </div>
+
+  <!-- Depoimentos -->
+  <div class="text-center mt-12">
+    <h2 class="text-3xl font-extrabold text-pink-600 mb-2">O que nossos clientes dizem</h2>
+    <p class="text-gray-500 mb-10">A satisfação dos nossos clientes é o nosso maior orgulho</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <app-testimonials-card
+      *ngFor="let testimonial of testimonials.slice(0, 3)"
+      [testimonial]="testimonial">
+    </app-testimonials-card>
+  </div>
+
+  <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-8">
+    <app-button (onClick)="goToLeaveTestimonial()">Deixe seu depoimento</app-button>
+    <app-button (onClick)="goToAllTestimonials()">Ver todos os depoimentos</app-button>
+  </div>
+</div>

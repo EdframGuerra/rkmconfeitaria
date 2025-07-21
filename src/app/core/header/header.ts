@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './header.css'
 })
 export class Header {
+  isSidebarOpen = false;
 
+  toggleSidebar(): void {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
 }
+

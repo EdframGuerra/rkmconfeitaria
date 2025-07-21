@@ -1,0 +1,26 @@
+/* Estilos para o Card de Incentivo */
+
+.incentive-card {
+  /* Tailwind: bg-gradient-to-br from-pink-500 to-amber-400 text-white rounded-xl shadow-md overflow-hidden p-6 flex flex-col items-center justify-center text-center hover:shadow-xl transition transform hover:scale-105 */
+  min-height: 250px; /* Garante uma altura mínima para o card */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer; /* Indica que o card é interativo */
+}
+
+.incentive-card h3 {
+  /* Tailwind: text-2xl font-bold mb-4 */
+}
+
+.incentive-card p {
+  /* Tailwind: text-lg mb-6 */
+}
+
+.incentive-card a {
+  /* Tailwind: bg-white text-pink-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition */
+  display: inline-block; /* Para que o padding e rounded-full funcionem bem */
+  text-decoration: none; /* Remove sublinhado padrão do link */
+}

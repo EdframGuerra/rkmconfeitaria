@@ -12,7 +12,11 @@ const routes: Routes = [
   { path: 'encomendas', loadChildren: () => import('./pages/orders/orders.module').then(m => m.OrdersModule)
   },
   { path: 'depoimentos', loadChildren: () => import('./pages/testimonials/testimonials.module').then(m => m.TestimonialsModule)
-  }
+  },
+  // ✅ Redirecionamento para /home quando o path for vazio
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  // 🔒 Rota coringa para páginas não encontradas (opcional)
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

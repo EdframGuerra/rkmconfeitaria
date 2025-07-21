@@ -1,0 +1,65 @@
+/* Estilos para a página de Todos os Depoimentos */
+
+section {
+  padding-top: 4rem; /* py-16 do Tailwind */
+  padding-bottom: 4rem; /* py-16 do Tailwind */
+  background-color: white; /* bg-white do Tailwind */
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* px-4 do Tailwind */
+  padding-right: 1rem; /* px-4 do Tailwind */
+}
+
+h2 {
+  font-size: 2.25rem; /* text-4xl do Tailwind */
+  font-weight: 700; /* font-bold do Tailwind */
+  text-align: center; /* text-center do Tailwind */
+  color: #db2777; /* text-pink-600 do Tailwind */
+  margin-bottom: 3rem; /* mb-12 do Tailwind */
+}
+
+/* Grade para os cards de depoimento */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 do Tailwind */
+  gap: 2rem; /* gap-8 do Tailwind */
+}
+
+@media (min-width: 768px) { /* md: */
+  .grid.md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) { /* lg: */
+  .grid.lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Estilos para o botão "Deixe seu depoimento" */
+.inline-block.bg-pink-500 {
+  display: inline-block;
+  background-color: #ec4899; /* bg-pink-500 do Tailwind */
+  color: white; /* text-white do Tailwind */
+  font-weight: 700; /* font-bold do Tailwind */
+  padding: 0.75rem 2rem; /* py-3 px-8 do Tailwind */
+  border-radius: 9999px; /* rounded-full do Tailwind */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg do Tailwind */
+  transition: background-color 0.15s ease-in-out; /* transition do Tailwind */
+}
+
+.inline-block.bg-pink-500:hover {
+  background-color: #db2777; /* hover:bg-pink-600 do Tailwind */
+}
+
+/* Estilo para a mensagem de "ainda não há depoimentos" */
+.text-center.text-gray-600 {
+  text-align: center;
+  color: #4b5563; /* text-gray-600 do Tailwind */
+}
+
+/* O estilo para o TestimonialCardComponent está em seu próprio arquivo CSS */

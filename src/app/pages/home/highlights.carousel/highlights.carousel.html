@@ -1,1 +1,67 @@
-<p>highlights-carousel works!</p>
+<!-- highlights-carousel.component.html -->
+<div class="relative max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-xl">
+  <!-- Container principal do carrossel -->
+  <div
+    class="carousel-container relative w-full h-80 md:h-96 overflow-hidden rounded-xl"
+    (mouseenter)="pauseAutoSlide()"
+    (mouseleave)="startAutoSlide()"
+  >
+    <!-- Slides -->
+    <div
+      *ngFor="let image of images; let i = index; trackBy: trackByFn"
+      class="absolute inset-0 transition-opacity duration-500 ease-in-out"
+      [ngClass]="{
+        'opacity-100 z-10': currentIndex === i,
+        'opacity-0 z-0': currentIndex !== i
+      }"
+    >
+      <img
+        [src]="getImagePath(image.url)"
+        [alt]="image.alt"
+        class="w-full h-full object-cover rounded-xl"
+        loading="lazy"
+      />
+
+      <!-- Botão "Saiba Mais" -->
+      <div class="absolute bottom-8 left-0 right-0 text-center">
+        <button
+          (click)="goToProductPage(image.url)"
+          class="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition-all hover:scale-105"
+          aria-label="Ver detalhes do produto"
+        >
+          Saiba mais
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botões de navegação (anterior/próximo) -->
+  <button
+    (click)="prevSlide()"
+    class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-black font-bold py-2 px-3 rounded-full z-20 shadow-md transition-all"
+    aria-label="Slide anterior"
+  >
+    ‹
+  </button>
+  <button
+    (click)="nextSlide()"
+    class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white text-black font-bold py-2 px-3 rounded-full z-20 shadow-md transition-all"
+    aria-label="Próximo slide"
+  >
+    ›
+  </button>
+
+  <!-- Indicadores de slide -->
+  <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
+    <button
+      *ngFor="let image of images; let i = index"
+      (click)="goToSlide(i)"
+      class="w-3 h-3 rounded-full cursor-pointer transition-all"
+      [ngClass]="{
+        'bg-white scale-125': currentIndex === i,
+        'bg-gray-400/80 hover:bg-gray-300': currentIndex !== i
+      }"
+      [attr.aria-label]="'Ir para slide ' + (i + 1)"
+    ></button>
+  </div>
+</div>

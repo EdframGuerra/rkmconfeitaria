@@ -1,1 +1,26 @@
-<p>testimonials.page works!</p>
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-extrabold text-center text-pink-600 mb-14">
+      Todos os Depoimentos
+    </h2>
+
+    <!-- Grade para exibir todos os cards de depoimento -->
+    <div *ngIf="allTestimonials.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Iterar sobre todos os depoimentos e renderizar o TestimonialCardComponent -->
+      <app-testimonials-card
+        *ngFor="let testimonial of allTestimonials"
+        [testimonial]="testimonial">
+      </app-testimonials-card>
+    </div>
+    <div *ngIf="allTestimonials.length === 0" class="text-center text-gray-600">
+      <p>Ainda não há depoimentos. Seja o primeiro a deixar um!</p>
+    </div>
+
+    <!-- Botão para deixar um depoimento -->
+    <div class="text-center mt-12">
+      <a [routerLink]="['/depoimentos/deixar']" class="inline-block bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">
+        Deixe seu depoimento
+      </a>
+    </div>
+  </div>
+</section>

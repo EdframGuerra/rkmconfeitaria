@@ -3,14 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeLayout } from './home.layout/home.layout';
 import { HighlightsCarousel } from './highlights.carousel/highlights.carousel';
-import { MenuSection } from './menu.section/menu.section';
 import { ContactForm } from './contact.form/contact.form';
-import { TestimonialsSection } from './testimonials.section/testimonials.section';
 import { Home } from './home/home';
-
 import { HomeRoutingModule } from './home.routing.module';
 import { FormsModule } from '@angular/forms';
-
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -18,14 +15,16 @@ import { FormsModule } from '@angular/forms';
     Home,
     HomeLayout,
     HighlightsCarousel,
-    MenuSection,
-    ContactForm,
-    TestimonialsSection
+    ContactForm
   ],
   imports: [
     CommonModule,
     FormsModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    SharedModule
+  ],
+  exports:[
+    SharedModule
   ]
 })
 export class HomeModule { }

@@ -1,1 +1,39 @@
-<p>register works!</p>
+<section class="py-16 bg-amber-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl md:text-5xl font-bold text-center text-pink-600 mb-12">
+      Cadastre-se no Clube de Doces
+    </h2>
+
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8">
+      <h3 class="text-2xl font-bold text-pink-600 mb-6 text-center">Preencha seus dados</h3>
+
+      <form (ngSubmit)="submitRegistrationForm()" #registerForm="ngForm">
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nome Completo</label>
+          <input type="text" id="name" name="name" [(ngModel)]="registerData.name" required
+                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700 text-sm font-bold mb-2">E-mail</label>
+          <input type="email" id="email" name="email" [(ngModel)]="registerData.email" required email
+                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="mb-6">
+          <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Telefone</label>
+          <input type="tel" id="phone" name="phone" [(ngModel)]="registerData.phone" required pattern="[0-9]{10,11}"
+                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="flex items-center justify-center">
+          <button type="submit" [disabled]="!registerForm.form.valid"
+                  class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline transition disabled:opacity-50 disabled:cursor-not-allowed">
+            Cadastrar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+

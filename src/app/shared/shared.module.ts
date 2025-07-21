@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Button } from './button/button';
 import { ProductCard } from './product.card/product.card';
 import { IncentiveCard } from './incentive.card/incentive.card';
+import { TestimonialsCard } from './testimonials.card/testimonials.card';
 
 
 
@@ -10,7 +11,8 @@ import { IncentiveCard } from './incentive.card/incentive.card';
   declarations: [
     Button,
     ProductCard,
-    IncentiveCard
+    IncentiveCard,
+    TestimonialsCard
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { IncentiveCard } from './incentive.card/incentive.card';
   exports: [
     Button,
     ProductCard,
-    IncentiveCard
+    IncentiveCard,
+    TestimonialsCard
   ]
 })
 export class SharedModule { }

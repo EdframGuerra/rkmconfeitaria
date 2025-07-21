@@ -1,1 +1,88 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* Definição de variáveis CSS para cores (opcional, mas útil para consistência) */
+:root {
+  --color-pink-600: #db2777; /* Cor rosa principal */
+  --color-pink-500: #ec4899; /* Cor rosa mais clara */
+  --color-amber-50: #fffbeb; /* Amarelo bem fraquinho */
+  --color-gray-text: #4a4a4a; /* Cor para parágrafos */
+  --color-pink-shadow: rgba(236, 72, 153, 0.2); /* Sombra rosa suave */
+}
+
+/* Estilos Globais */
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: var(--color-amber-50); /* Fundo amarelo fraquinho */
+  color: var(--color-gray-text); /* Cor padrão para texto (parágrafos) */
+}
+
+/* Estilos para Títulos (h1 a h6) */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-pink-600); /* Cor rosa para todos os títulos */
+  font-family: 'Quicksand', sans-serif; /* Mantém a fonte Quicksand, ou pode usar Pacifico para títulos específicos */
+}
+
+/* Estilos para Parágrafos (se não tiver uma classe específica) */
+p {
+  color: var(--color-gray-text); /* Cor específica para parágrafos */
+}
+
+/* Estilos para Botões (complementando as classes Tailwind) */
+/* As classes Tailwind como bg-pink-500 já definem a cor principal. */
+/* Este bloco é mais para garantir que a cor seja consistente se o Tailwind não aplicar. */
+button {
+  /* As classes Tailwind no HTML já devem definir a cor do botão (ex: bg-pink-500) */
+  /* Este é um fallback ou para estilos que o Tailwind não cobre */
+  color: white; /* Cor do texto do botão */
+  background-color: var(--color-pink-600); /* Cor de fundo do botão */
+  /* Outras propriedades como padding, border-radius, etc., vêm do Tailwind */
+}
+
+
+.header-bg {
+  background-image: url('/bolo-rosa.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Estilos para Cards e Tabelas (com sombreamento rosa) */
+.card, .table {
+  box-shadow: 0 4px 10px var(--color-pink-shadow); /* Sombra rosa suave */
+  border-radius: 0.75rem; /* Exemplo: rounded-xl do Tailwind */
+  overflow: hidden; /* Garante que a sombra e borda arredondada funcionem */
+}
+
+/* Estilos específicos do logo (mantidos do seu HTML base) */
+.logo-text {
+  font-family: 'Pacifico', cursive;
+}
+
+/* Estilos de transição do carrossel (mantidos do seu HTML base) */
+.carousel-item {
+  transition: transform 0.5s ease;
+}
+
+/* Estilos de transição e hover dos cards de comentário (mantidos do seu HTML base) */
+.comment-card {
+  transition: all 0.3s ease;
+}
+
+.comment-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Manter sombra original para hover */
+}
+
+/* Estilos de transição e hover dos produtos (mantidos do seu HTML base) */
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+.product-overlay {
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}

@@ -1,0 +1,19 @@
+<div class="comment-card bg-amber-50 rounded-xl p-6 shadow-md hover:shadow-lg">
+    <div class="flex items-center mb-4">
+        <div class="w-12 h-12 rounded-full bg-pink-400 flex items-center justify-center text-white font-bold text-xl mr-4">
+            <!-- Exibe a primeira letra do nome ou '?' se anônimo/vazio -->
+            {{ testimonial.isAnonymous ? '?' : (testimonial.name ? testimonial.name.charAt(0).toUpperCase() : '?') }}
+        </div>
+        <div>
+            <h4 class="font-bold text-pink-600">{{ testimonial.isAnonymous ? 'Anônimo' : testimonial.name }}</h4>
+            <div class="flex text-amber-400">
+                <!-- Estrelas de avaliação -->
+                <i *ngFor="let star of [1,2,3,4,5]"
+                   class="fas fa-star"
+                   [ngClass]="{'text-amber-400': star <= testimonial.rating, 'text-gray-300': star > testimonial.rating}"></i>
+            </div>
+        </div>
+    </div>
+    <p class="text-gray-700">"{{ testimonial.message }}"</p>
+</div>
+
