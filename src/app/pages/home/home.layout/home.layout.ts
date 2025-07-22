@@ -12,19 +12,19 @@ import { InterfaceProductCard } from './../../../models/interface.product.card';
 export class HomeLayout {
   products: InterfaceProductCard[] = [
   {
-    title: 'Bolo 1',
+    name: 'Bolo 1',
     description: 'Descrição 1',
     price: 50,
     image: 'bolo1.png'
   },
   {
-    title: 'Bolo 2',
+    name: 'Bolo 2',
     description: 'Descrição 2',
     price: 60,
     image: 'bolo2.png'
   },
   {
-    title: 'Bolo 3',
+    name: 'Bolo 3',
     description: 'Descrição 3',
     price: 70,
     image: 'bolo3.png'

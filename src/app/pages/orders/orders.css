@@ -1,0 +1,89 @@
+/* Estilos para a seção de Encomendas/Carrinho */
+
+section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #FFFBEB; /* Amarelo clarinho */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-align: center;
+  color: #db2777; /* Rosa */
+  margin-bottom: 3rem;
+}
+
+.max-w-3xl.mx-auto.bg-white.rounded-xl.shadow-lg.p-8 {
+  max-width: 48rem; /* max-w-3xl do Tailwind */
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border-radius: 0.75rem; /* rounded-xl do Tailwind */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg do Tailwind */
+  padding: 2rem; /* p-8 do Tailwind */
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #db2777; /* Rosa */
+  margin-bottom: 1.5rem;
+}
+
+.d-flex { display: flex; }
+.align-items-center { align-items: center; }
+.mb-4 { margin-bottom: 1rem; }
+.border-bottom { border-bottom: 1px solid #dee2e6; } /* Bootstrap border-bottom */
+.pb-3 { padding-bottom: 1rem; } /* Bootstrap pb-3 */
+
+.img-fluid { max-width: 100%; height: auto; }
+.rounded-lg { border-radius: 0.5rem; } /* rounded-lg do Tailwind */
+.me-3 { margin-right: 1rem; } /* me-3 do Bootstrap */
+
+.flex-grow-1 { flex-grow: 1; }
+.text-lg { font-size: 1.125rem; }
+.font-bold { font-weight: 700; }
+.text-gray-800 { color: #1f2937; }
+.mb-1 { margin-bottom: 0.25rem; }
+.text-gray-600 { color: #4b5563; }
+.mb-0 { margin-bottom: 0; }
+.text-pink-600 { color: #db2777; }
+
+.btn-sm { padding: 0.25rem 0.5rem; font-size: 0.875rem; border-radius: 0.25rem; }
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+  background-color: transparent;
+  transition: all 0.15s ease-in-out;
+}
+.btn-outline-danger:hover {
+  color: white;
+  background-color: #dc3545;
+}
+
+.text-end { text-align: end; }
+.mt-5 { margin-top: 3rem; }
+
+.text-2xl { font-size: 1.5rem; }
+
+.btn-lg { padding: 0.75rem 1.5rem; font-size: 1.25rem; border-radius: 9999px; }
+.bg-pink-500 { background-color: #ec4899; }
+.hover\:bg-pink-600:hover { background-color: #db2777; }
+.text-white { color: white; }
+.rounded-full { border-radius: 9999px; }
+.mt-4 { margin-top: 1rem; }
+
+/* Estilos para o link "Carrinho vazio" */
+.text-decoration-underline { text-decoration: underline; }

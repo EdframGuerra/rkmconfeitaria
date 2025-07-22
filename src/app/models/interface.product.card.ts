@@ -1,5 +1,6 @@
 export interface InterfaceProductCard {
-   title: string;
+  id?: number; // Opcional para novos produtos
+  name: string;
   description: string;
   price: number;
   image: string;
