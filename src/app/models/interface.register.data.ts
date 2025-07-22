@@ -1,5 +1,5 @@
-export interface RegisterData {
-   name: string;
+export interface InterfaceRegisterData {
+  name: string;
   email: string;
   phone: string;
   password?: string;

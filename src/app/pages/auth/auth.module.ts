@@ -10,18 +10,14 @@ import { Login } from './login/login';
 import { RouterModule, Routes } from '@angular/router';
 
 @NgModule({
-  declarations: [Auth,
-    Register,
-     AdminLogin,
-    Login
+  declarations: [Auth, Register, AdminLogin, Login],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    SharedModule,
+    FormsModule,
+    RouterModule,
   ],
-  imports: [CommonModule,
-     AuthRoutingModule,
-     SharedModule, FormsModule,
-     RouterModule
-    ],
-  exports: [
-    SharedModule
-  ],
+  exports: [SharedModule],
 })
 export class AuthModule {}
