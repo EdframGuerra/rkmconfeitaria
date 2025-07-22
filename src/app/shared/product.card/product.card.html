@@ -1,6 +1,6 @@
 <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition">
   <div class="relative h-64 group">
-    <img [src]=" productData.image" [alt]="productData.title" class="w-full h-full object-cover">
+    <img [src]=" productData.image" [alt]="productData.name" class="w-full h-full object-cover">
 
     <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
       <button (click)="showDetails()" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full transition">
@@ -11,7 +11,7 @@
 
   <div class="p-6">
     <h3 class="text-xl font-bold text-pink-600 mb-2">
-      <a (click)="showDetails()" class="hover:text-pink-400 cursor-pointer">{{ productData.title }}</a>
+      <a (click)="showDetails()" class="hover:text-pink-400 cursor-pointer">{{ productData.name }}</a>
     </h3>
 
     <p class="text-gray-600 mb-4">{{ productData.description }}</p>

@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TestimonialsRoutingModule } from './testimonials.routing.module';
 import { SharedModule } from '../../shared/shared.module';
+import { LeaveTestimonialForm } from './leave.testimonial.form/leave.testimonial.form';
 
 @NgModule({
   declarations: [
-    TestimonialsPage
+    TestimonialsPage,
+    LeaveTestimonialForm
   ],
   imports: [
     CommonModule,
@@ -14,7 +16,8 @@ import { SharedModule } from '../../shared/shared.module';
     SharedModule
   ],
   exports:[
-    SharedModule
+    SharedModule,
+    LeaveTestimonialForm
   ]
 })
 export class TestimonialsModule { }

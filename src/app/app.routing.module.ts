@@ -1,6 +1,7 @@
 import { HomeModule } from './pages/home/home.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule)
@@ -16,7 +17,12 @@ const routes: Routes = [
   // ✅ Redirecionamento para /home quando o path for vazio
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   // 🔒 Rota coringa para páginas não encontradas (opcional)
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'home' },
+  {
+  path: 'admin',
+  canActivate: [AuthGuard],
+  loadChildren: () => import('./services/auth.guard').then(m => m.AuthGuard)
+}
 ];
 
 @NgModule({
