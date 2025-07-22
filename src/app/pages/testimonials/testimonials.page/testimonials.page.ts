@@ -33,7 +33,7 @@ export class TestimonialsPage implements OnInit {
       },
       {
         id: 3,
-        name: "Ana Paula C.",
+        name: "Dona Vilma",
         rating: 4,
         message: "Compro os macarons toda semana para o café da tarde na empresa. Meus colegas adoram e sempre pedem para eu trazer mais. A qualidade é excelente!",
         email: "ana@example.com"

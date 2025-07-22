@@ -1,1 +1,93 @@
-<p>leave.testimonial.form works!</p>
+<section class="py-16 bg-amber-50 min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl md:text-5xl font-bold text-center text-pink-600 mb-12">
+      Deixe seu Depoimento
+    </h2>
+
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8">
+      <h3 class="text-2xl font-bold text-pink-600 mb-6 text-center">Compartilhe sua experiência!</h3>
+      
+      <form (ngSubmit)="submitTestimonialForm()" #testimonialForm="ngForm">
+        <div class="mb-4">
+          <label for="name" class="d-block text-gray-700 text-sm font-bold mb-2">Seu Nome</label>
+          <input type="text" id="name" name="name" [(ngModel)]="formData.name" required
+                 class="shadow appearance-none border rounded w-100 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        
+        <div class="mb-4">
+          <label for="email" class="d-block text-gray-700 text-sm font-bold mb-2">Seu E-mail (não será divulgado)</label>
+          <input type="email" id="email" name="email" [(ngModel)]="formData.email" email
+                 class="shadow appearance-none border rounded w-100 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <p class="text-sm text-gray-500 mt-1">Seu e-mail não será publicado.</p>
+        </div>
+
+        <div class="mb-4 form-check">
+          <input type="checkbox" id="isAnonymous" name="isAnonymous" [(ngModel)]="formData.isAnonymous"
+                 class="form-check-input">
+          <label for="isAnonymous" class="form-check-label text-gray-700 text-sm">Postar anonimamente</label>
+        </div>
+
+        <div class="mb-4">
+          <label class="d-block text-gray-700 text-sm font-bold mb-2">Sua Avaliação</label>
+          <div class="d-flex justify-content-start gap-1">
+            <i *ngFor="let star of [1,2,3,4,5]" 
+               class="fas fa-star text-2xl cursor-pointer" 
+               [ngClass]="{'text-warning': star <= formData.rating, 'text-gray-300': star > formData.rating}"
+               (click)="setRating(star)"></i>
+          </div>
+          <input type="hidden" name="rating" [(ngModel)]="formData.rating" required>
+        </div>
+
+        <div class="mb-6">
+          <label for="message" class="d-block text-gray-700 text-sm font-bold mb-2">Seu Depoimento</label>
+          <textarea id="message" name="message" [(ngModel)]="formData.message" rows="5" required
+                    class="shadow appearance-none border rounded w-100 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+        </div>
+        
+        <!-- Checkbox de aceitar termos -->
+        <div class="mb-4 form-check">
+          <input type="checkbox" id="termsAccepted" name="termsAccepted" [(ngModel)]="termsAccepted" required
+                 class="form-check-input">
+          <label for="termsAccepted" class="form-check-label text-gray-700 text-sm">
+            Eu aceito os 
+            <a (click)="openTermsModal()" class="text-pink-600 hover:text-pink-800 cursor-pointer text-decoration-underline">Termos e Condições</a>.
+          </label>
+        </div>
+        
+        <div class="flex items-center justify-center">
+          <button type="submit" [disabled]="!testimonialForm.form.valid || !termsAccepted"
+                  class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline transition disabled:opacity-50 disabled:cursor-not-allowed">
+            Enviar Depoimento
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Modal de Termos e Condições -->
+<div class="fixed inset-0 bg-black bg-opacity-50 d-flex align-items-center justify-content-center z-50" *ngIf="isTermsModalOpen">
+  <div class="bg-white rounded-lg shadow-lg p-6 w-100 max-w-2xl position-relative">
+    <h3 class="text-2xl font-bold text-pink-600 mb-4">Termos e Condições para Depoimentos</h3>
+    <div class="max-h-96 overflow-y-auto text-gray-700 mb-6">
+      <p><strong>1. Conteúdo do Depoimento:</strong> Ao enviar seu depoimento, você concorda que o conteúdo é de sua autoria e não infringe direitos autorais de terceiros. Depoimentos devem ser respeitosos, não ofensivos e relevantes para os produtos ou serviços da RKM Confeitaria.</p>
+      <p><strong>2. Publicação:</strong> A RKM Confeitaria reserva-se o direito de revisar, editar e publicar (ou não publicar) qualquer depoimento enviado. A publicação não é garantida.</p>
+      <p><strong>3. Uso da Imagem/Nome:</strong> Ao enviar um depoimento, você concede à RKM Confeitaria o direito de usar seu nome (ou "Anônimo", se selecionado) e o conteúdo do depoimento em materiais de marketing, no site e em redes sociais, sem compensação adicional.</p>
+      <p><strong>4. Privacidade do E-mail:</strong> Seu endereço de e-mail não será publicado publicamente. Ele será usado apenas para fins de contato pela RKM Confeitaria, se necessário, e em conformidade com nossa Política de Privacidade.</p>
+      <p><strong>5. Modificações:</strong> A RKM Confeitaria pode modificar estes termos a qualquer momento. O uso continuado do serviço de depoimentos após tais modificações constitui sua aceitação dos novos termos.</p>
+    </div>
+    <div class="d-flex justify-content-end gap-4">
+      <button (click)="closeTermsModal()" class="btn btn-secondary">Fechar</button>
+      <button (click)="acceptTerms()" class="btn btn-primary">Aceitar Termos</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Confirmação de Envio (Opcional) -->
+<div class="fixed inset-0 bg-black bg-opacity-50 d-flex align-items-center justify-content-center z-50" *ngIf="isConfirmationModalOpen">
+  <div class="bg-white rounded-lg shadow-lg p-6 w-100 max-w-md text-center position-relative">
+    <h3 class="text-2xl font-bold text-pink-600 mb-4">Depoimento Enviado!</h3>
+    <p class="text-gray-700 mb-6">Obrigado por compartilhar sua experiência, {{ formData.name }}!</p>
+    <button (click)="closeConfirmationModal()" class="btn btn-primary">OK</button>
+  </div>
+</div>

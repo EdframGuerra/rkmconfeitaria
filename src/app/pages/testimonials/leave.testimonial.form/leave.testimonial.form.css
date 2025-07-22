@@ -1,0 +1,200 @@
+/* Estilos para a seção de Deixar Depoimento */
+
+section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #FFFBEB; /* Amarelo clarinho */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-align: center;
+  color: #db2777; /* Rosa */
+  margin-bottom: 3rem;
+}
+
+.max-w-md.mx-auto.bg-white.rounded-xl.shadow-lg.p-8 {
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #db2777; /* Rosa */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.d-block { display: block; }
+.text-gray-700 { color: #374151; }
+.text-sm { font-size: 0.875rem; }
+.font-bold { font-weight: 700; }
+.mb-2 { margin-bottom: 0.5rem; }
+
+input, select, textarea {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  border-width: 1px;
+  border-color: #e2e8f0;
+  border-radius: 0.25rem;
+  width: 100%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  color: #4a5568;
+  line-height: 1.25;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.5);
+  border-color: #ec4899;
+}
+
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+
+.form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.form-check-input {
+  margin-right: 0.5rem;
+}
+
+.form-check-label {
+  cursor: pointer;
+}
+
+.text-decoration-underline { text-decoration: underline; }
+
+.d-flex { display: flex; }
+.justify-content-start { justify-content: flex-start; }
+.gap-1 { gap: 0.25rem; } /* Espaçamento entre estrelas */
+
+.text-2xl { font-size: 1.5rem; }
+.cursor-pointer { cursor: pointer; }
+.text-warning { color: #ffc107; } /* Cor amarela para estrelas preenchidas */
+.text-gray-300 { color: #d1d5db; } /* Cor cinza para estrelas não preenchidas */
+
+.flex.items-center.justify-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button[type="submit"] {
+  background-color: #ec4899;
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease-in-out;
+}
+
+button[type="submit"]:hover {
+  background-color: #db2777;
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Estilos para modais */
+.fixed.inset-0.bg-black.bg-opacity-50 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.bg-white.rounded-lg.shadow-lg.p-6 {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 32rem; /* max-w-2xl ou max-w-md */
+  position: relative;
+}
+
+.bg-white.rounded-lg.shadow-lg.p-6 h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #db2777;
+  margin-bottom: 1rem;
+}
+
+.bg-white.rounded-lg.shadow-lg.p-6 button.absolute {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: #4b5563;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.bg-white.rounded-lg.shadow-lg.p-6 button.absolute:hover {
+  color: #ef4444;
+}
+
+.max-h-96.overflow-y-auto {
+  max-height: 24rem;
+  overflow-y: auto;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.d-flex.justify-content-end.gap-4 button {
+  background-color: #d1d5db;
+  color: #374151;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  transition: all 0.15s ease-in-out;
+}
+
+.d-flex.justify-content-end.gap-4 button:hover {
+  background-color: #9ca3af;
+}
+
+.d-flex.justify-content-end.gap-4 button.bg-pink-500 {
+  background-color: #ec4899;
+  color: white;
+}
+
+.d-flex.justify-content-end.gap-4 button.bg-pink-500:hover {
+  background-color: #db2777;
+}

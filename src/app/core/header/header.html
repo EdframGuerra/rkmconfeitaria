@@ -1,34 +1,32 @@
 <!-- Cabeçalho fixo com gradiente e sombra -->
-<header
-  class="h-44 header-bg sticky top-0 z-50  shadow-md"
->
-  <div
-    class="container mx-auto relative h-full"
-  >
-    <!-- BOTÃO HAMBÚRGUER fixo à esquerda -->
-    <div class="bsolute bottom-4 left-10 flex items-center">
+<header class="h-44 header-bg sticky top-0 z-50 shadow-md w-full">
+  <div class="relative w-full h-full">
+    
+    <!-- ÍCONE HAMBÚRGUER - ESQUERDA FIXA E CENTRALIZADO VERTICAL -->
+    <div class="absolute top-1/2 left-4 transform -translate-y-1/2">
       <button
-        class="text-pink-600 hover:text-pink-300 focus:outline-none p-3 transition-all"
+        class="text-pink-600 hover:text-pink-300 focus:outline-none p-[10px] transition-all"
         (click)="toggleSidebar()"
         aria-label="Abrir menu"
         aria-expanded="isSidebarOpen"
       >
         <i class="fas fa-bars text-3xl"></i>
       </button>
-
-      <div class="absolute top-11 left-72">
-        <img src="logo-rkm.png" alt="Logo" class="h-34 w-36" />
-      </div>
-
-      <!-- Fundo escurecido ao abrir o menu lateral no mobile -->
-      <div
-        *ngIf="isSidebarOpen"
-        (click)="toggleSidebar()"
-        class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-      ></div>
     </div>
 
-    <!-- SIDEBAR (MENU LATERAL) -->
+    <!-- LOGO - POSICIONADO COM RESPONSIVIDADE -->
+    <div class="absolute top-11 left-[8rem] sm:left-[10rem] md:left-[18rem]">
+      <img src="logo-rkm.png" alt="Logo" class="h-34 w-36" />
+    </div>
+
+    <!-- FUNDO ESCURECIDO AO ABRIR O MENU NO MOBILE -->
+    <div
+      *ngIf="isSidebarOpen"
+      (click)="toggleSidebar()"
+      class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+    ></div>
+
+    <!-- MENU LATERAL (SIDEBAR) -->
     <aside
       *ngIf="isSidebarOpen"
       class="fixed top-0 left-0 h-full w-34 bg-transparent backdrop-blur-md shadow z-50 transition duration-300"
@@ -36,7 +34,7 @@
       [class.opacity-0]="!isSidebarOpen"
     >
       <div class="p-6 flex flex-col h-full">
-        <!-- Botão de fechar o menu lateral -->
+        <!-- Botão de fechar -->
         <button
           class="self-end text-pink-500 focus:outline-none mb-4"
           (click)="toggleSidebar()"
@@ -45,52 +43,41 @@
           <i class="fas fa-times text-xl"></i>
         </button>
 
-       <!-- MENU DE LINKS -->
-        <nav
-          class="flex flex-col space-y-4 text-pink-600 font-semibold text-lg"
-        >
-          <!-- Links com ícones e routerLink -->
-          <a
-            (click)="toggleSidebar()"
-            [routerLink]="['/admin']"
-            class="hover:text-pink-400 transition flex items-center space-x-3"
-          >
+        <!-- MENU DE LINKS -->
+        <nav class="flex flex-col space-y-4 text-pink-600 font-semibold text-lg">
+          <a (click)="toggleSidebar()" [routerLink]="['/admin']" class="hover:text-pink-400 transition flex items-center space-x-3">
             <i class="fas fa-user-shield"></i> <span>Admin</span>
           </a>
-          <a
-            (click)="toggleSidebar()"
-            [routerLink]="['/home']"
-            class="hover:text-pink-400 transition flex items-center space-x-3"
-          >
+          <a (click)="toggleSidebar()" [routerLink]="['/home']" class="hover:text-pink-400 transition flex items-center space-x-3">
             <i class="fas fa-home"></i> <span>Home</span>
           </a>
-          <a
-            (click)="toggleSidebar()"
-            [routerLink]="['/home']"
-            class="hover:text-pink-400 transition flex items-center space-x-3"
-          >
+          <a (click)="toggleSidebar()" [routerLink]="['/home']" class="hover:text-pink-400 transition flex items-center space-x-3">
             <i class="fas fa-star"></i> <span>Destaques</span>
           </a>
-          <a
-            (click)="toggleSidebar()"
-            [routerLink]="['/cardapio']"
-            class="hover:text-pink-400 transition flex items-center space-x-3"
-          >
+          <a (click)="toggleSidebar()" [routerLink]="['/cardapio']" class="hover:text-pink-400 transition flex items-center space-x-3">
             <i class="fas fa-book-open"></i> <span>Cardápio</span>
           </a>
-          <a
-            (click)="toggleSidebar()"
-            [routerLink]="['/home/encomendas']"
-            class="hover:text-pink-400 transition flex items-center space-x-3"
-          >
+          <a (click)="toggleSidebar()" [routerLink]="['/home/encomendas']" class="hover:text-pink-400 transition flex items-center space-x-3">
             <i class="fas fa-shopping-basket"></i> <span>Encomendas</span>
           </a>
+          <a (click)="toggleSidebar()" [routerLink]="['/depoimentos']" class="hover:text-pink-400 transition flex items-center space-x-3">
+            <i class="fas fa-comments"></i> <span>Depoimentos</span>
+          </a>
+          <!-- Cadastro Cliente -->
           <a
             (click)="toggleSidebar()"
-            [routerLink]="['/depoimentos']"
+            [routerLink]="['/auth/register']"
             class="hover:text-pink-400 transition flex items-center space-x-3"
           >
-            <i class="fas fa-comments"></i> <span>Depoimentos</span>
+            <i class="fas fa-user-plus"></i> <span>Cadastro Cliente</span>
+          </a>
+          <!-- Login Cliente -->
+          <a
+            (click)="toggleSidebar()"
+            [routerLink]="['/auth/login']"
+            class="hover:text-pink-400 transition flex items-center space-x-3"
+          >
+            <i class="fas fa-sign-in-alt"></i> <span>Login Cliente</span>
           </a>
         </nav>
       </div>
