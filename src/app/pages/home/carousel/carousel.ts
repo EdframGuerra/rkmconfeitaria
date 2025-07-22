@@ -15,7 +15,7 @@ export class Carousel implements OnInit, OnDestroy {
   carouselItems: InterfaceProductCard[] = [
     {
       id: 1,
-      name: 'Bolo de Brigadeiro',
+      name: 'Bolo deBrigadeiro',
       description: 'Delicioso bolo de chocolate com cobertura de brigadeiro cremoso',
       price: 89.90,
       image: 'bolo1.png'
