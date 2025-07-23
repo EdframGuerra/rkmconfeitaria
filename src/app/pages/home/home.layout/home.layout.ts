@@ -8,31 +8,34 @@ import { InterfaceCartItem } from '../../../models/interface.cart.item';
   selector: 'app-home-layout',
   standalone: false,
   templateUrl: './home.layout.html',
-  styleUrl: './home.layout.css'
+  styleUrl: './home.layout.css',
 })
 export class HomeLayout {
   products: InterfaceProductCard[] = [
-  {
-    name: 'Bolo 1',
-    description: 'Descrição 1',
-    price: 50,
-    image: 'bolo1.png'
-  },
-  {
-    name: 'Bolo 2',
-    description: 'Descrição 2',
-    price: 60,
-    image: 'bolo2.png'
-  },
-  {
-    name: 'Bolo 3',
-    description: 'Descrição 3',
-    price: 70,
-    image: 'bolo3.png'
-  }
-];
+    {
+      id: 1,
+      name: 'Torta de Brigadeiro',
+      description:
+        'Delicioso bolo de chocolate com cobertura de brigadeiro cremoso',
+      price: 89.9,
+      image: 'torta-brigadeiro2.png',
+    },
+    {
+      id: 3,
+      name: 'Torta de morango',
+      description: 'Bolo aveludado vermelho com recheio de cream cheese',
+      price: 120.0,
+      image: 'torta-morango.png',
+    },
+    {
+      name: 'Torta mundo dos sabores',
+      description: 'Descrição 3',
+      price: 70,
+      image: 'torta-mundo-dos-sabores.png',
+    },
+  ];
 
-testimonials: InterfaceTestimonialCard[] = [
+  testimonials: InterfaceTestimonialCard[] = [
     {
       id: 1,
       name: 'Ana Clara',
@@ -49,11 +52,12 @@ testimonials: InterfaceTestimonialCard[] = [
       id: 3,
       name: 'Márcia Fernandes',
       rating: 5,
-      message: 'Já encomendei várias vezes e sempre superam minhas expectativas!',
-    }
+      message:
+        'Já encomendei várias vezes e sempre superam minhas expectativas!',
+    },
   ];
 
-   constructor(private router: Router) { } // Injetar Router
+  constructor(private router: Router) {} // Injetar Router
 
   /**
    * Navega para a página de Cardápio Completo.
@@ -65,7 +69,7 @@ testimonials: InterfaceTestimonialCard[] = [
   /**
    * Navega para a página/formulário de deixar depoimento.
    */
-   goToLeaveTestimonial(): void {
+  goToLeaveTestimonial(): void {
     this.router.navigate(['/depoimento/deixar']);
   }
 
@@ -73,14 +77,14 @@ testimonials: InterfaceTestimonialCard[] = [
     this.router.navigate(['/depoimentos']);
   }
 
-    /**
+  /**
    * Adiciona produto ao carrinho e redireciona para o cardápio.
    */
   makeOrder(item: InterfaceProductCard): void {
     const savedCart = localStorage.getItem('cart');
     const cart: InterfaceCartItem[] = savedCart ? JSON.parse(savedCart) : [];
 
-    const existingItem = cart.find(i => i.id === item.id);
+    const existingItem = cart.find((i) => i.id === item.id);
     if (existingItem) {
       existingItem.quantity++;
     } else {
@@ -89,12 +93,11 @@ testimonials: InterfaceTestimonialCard[] = [
         name: item.name,
         price: item.price,
         image: item.image,
-        quantity: 1
+        quantity: 1,
       });
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
     this.router.navigate(['/cardapio']);
   }
-
 }

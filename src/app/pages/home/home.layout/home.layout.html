@@ -38,11 +38,27 @@
     <app-button (onClick)="goToCardapioCompleto()">Cardápio completo</app-button>
   </div>
 
-  <!-- Cadastre-se e fale conosco -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    <app-incentive-card></app-incentive-card>
-    <app-contact-form></app-contact-form>
+<!-- Seção "Cadastre-se", "Fale Conosco" e "Horário/Contatos" -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-stretch">
+
+  <!-- Coluna 1: Incentivo -->
+  <div class="d-flex h-100">
+    <app-incentive-card class="flex-fill w-100 h-100"></app-incentive-card>
   </div>
+
+  <!-- Coluna 2: Formulário de Contato -->
+  <div class="d-flex h-100">
+    <app-contact-form class="flex-fill w-100 h-100"></app-contact-form>
+  </div>
+
+  <!-- Coluna 3: Horário e Contatos (empilhados) -->
+  <div class="d-flex flex-column gap-4 h-100">
+    <app-horario-funcionamento class="flex-fill w-100 h-100"></app-horario-funcionamento>
+    <app-nossos-contatos class="flex-fill w-100 h-100"></app-nossos-contatos>
+  </div>
+
+</div>
+
 
   <!-- Depoimentos -->
   <div class="text-center mt-12">

@@ -8,6 +8,8 @@ import { HomeRoutingModule } from './home.routing.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { Carousel } from './carousel/carousel';
+import { HorarioFuncionamento } from './horario.funcionamento/horario.funcionamento';
+import { NossosContatos } from './nossos.contatos/nossos.contatos';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { Carousel } from './carousel/carousel';
     Home,
     HomeLayout,
     ContactForm,
-    Carousel
+    Carousel,
+    HorarioFuncionamento,
+    NossosContatos
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,9 @@ import { Carousel } from './carousel/carousel';
   ],
   exports:[
     SharedModule,
-    Carousel
+    Carousel,
+    HorarioFuncionamento,
+    NossosContatos
   ]
 })
 export class HomeModule { }
