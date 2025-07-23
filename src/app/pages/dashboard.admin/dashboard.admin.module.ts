@@ -5,16 +5,15 @@ import { DashboardAdmin } from './dashboard.admin';
 
 @NgModule({
   declarations: [
-    DashboardAdmin // <-- DECLARAR O COMPONENTE APENAS AQUI
+    DashboardAdmin   
   ],
   imports: [
-    CommonModule,
-    // Remover RouterModule daqui se DashboardAdminRoutingModule já o importar e exportar
-    // RouterModule,
-    DashboardAdminRoutingModule // Adicionar o módulo de roteamento
+    CommonModule,   
+    DashboardAdminRoutingModule
+  
   ],
   exports: [
-    DashboardAdmin // <-- Exporte o componente
+    DashboardAdmin
   ]
 })
 export class DashboardAdminModule { }

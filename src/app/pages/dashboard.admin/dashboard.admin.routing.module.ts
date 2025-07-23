@@ -10,9 +10,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    DashboardAdmin
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     SharedModule
