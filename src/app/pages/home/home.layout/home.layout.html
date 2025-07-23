@@ -25,13 +25,14 @@
     <app-carousel></app-carousel>
   </div>
 
-  <!-- Seção de produtos -->
-  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
-    <app-product-card
-      *ngFor="let product of products"
-      [productData]="product">
-    </app-product-card>
-  </div>
+ <!-- Seção de produtos -->
+<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  <app-product-card
+    *ngFor="let product of products"
+    [productData]="product"
+    (onOrderClick)="makeOrder($event)">
+  </app-product-card>
+</div>
 
   <div class="w-full text-center mt-4">
     <app-button (onClick)="goToCardapioCompleto()">Cardápio completo</app-button>

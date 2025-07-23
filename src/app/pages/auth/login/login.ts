@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms'; // Importar para usar Template-Driven Forms
-import { Router } from '@angular/router'; // Importar Router para navegação
+import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { InterfaceLogin } from '../../../models/interface.login'; // Importar a interface LoginData
-
-// Interface para os dados do formulário de login
+import { InterfaceLogin } from '../../../models/interface.login';
 
 @Component({
   selector: 'app-login',
@@ -12,40 +9,61 @@ import { InterfaceLogin } from '../../../models/interface.login'; // Importar a 
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class Login { // Corrigido para LoginComponent
-  loginData: InterfaceLogin = {
-    email: '',
-    password: ''
-  };
-
-  isTermsModalOpen: boolean = false;
+export class Login implements OnInit {
+  loginData: InterfaceLogin = { email: '', password: '' };
+  errorMessage: string = '';
   termsAccepted: boolean = false;
+  isTermsModalOpen: boolean = false;
+  title: string = 'Acesso ao Clube de Doces';
 
   constructor(private router: Router, private authService: AuthService) {}
 
-submitLogin(): void {
-  const success = this.authService.login(this.loginData.email, this.loginData.password);
-  if (success) {
-    alert('Login bem-sucedido!');
-    this.router.navigate(['/admin']);
-  } else {
-    alert('E-mail ou senha incorretos.');
+  ngOnInit(): void {
+    const nav = this.router.getCurrentNavigation();
+    const fromAdmin = nav?.extras?.state?.['fromAdmin'];
+
+    if (fromAdmin) {
+      this.title = 'Área Administrativa';
+    }
   }
-}
-termsModalAberto = false;
 
-openTermsModal() {
-  this.termsModalAberto = true;
-}
+  submitLogin(): void {
+    this.errorMessage = '';
 
-closeTermsModal() {
-  this.termsModalAberto = false;
-}
+    if (!this.loginData.email || !this.loginData.password) {
+      this.errorMessage = 'Por favor, preencha e-mail e senha.';
+      return;
+    }
 
-acceptTerms() {
-  // Aqui você pode fazer algo como marcar uma variável para controle posterior
-  this.termsModalAberto = false;
-  this.termsAccepted = true;
-}
+    if (!this.termsAccepted) {
+      this.errorMessage = 'Você deve aceitar os termos e condições.';
+      return;
+    }
 
+    const loggedIn = this.authService.login(this.loginData.email, this.loginData.password);
+
+    if (loggedIn) {
+      const userType = this.authService.getUserType();
+      if (userType === 'admin') {
+        this.router.navigate(['/dashboard'], { state: { fromAdmin: true } });
+      } else {
+        this.router.navigate(['/home']);
+      }
+    } else {
+      this.errorMessage = 'Credenciais inválidas. Tente novamente.';
+    }
+  }
+
+  openTermsModal(): void {
+    this.isTermsModalOpen = true;
+  }
+
+  closeTermsModal(): void {
+    this.isTermsModalOpen = false;
+  }
+
+  acceptTerms(): void {
+    this.termsAccepted = true;
+    this.isTermsModalOpen = false;
+  }
 }

@@ -73,6 +73,6 @@ export class Register implements OnInit {
   closeConfirmationModal(): void {
     this.isConfirmationModalOpen = false;
     // Opcional: Redirecionar o usuário para a Home ou página de login após o cadastro
-    this.router.navigate(['/home']);
+    this.router.navigate(['/cardapio']);
   }
 }

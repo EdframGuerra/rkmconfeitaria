@@ -1,4 +1,3 @@
-
 section {
   padding-top: 4rem; /* py-16 do Tailwind */
   padding-bottom: 4rem; /* py-16 do Tailwind */
@@ -53,7 +52,7 @@ input, select, textarea {
   appearance: none; /* appearance-none do Tailwind */
   border-width: 1px; /* border do Tailwind */
   border-color: #e2e8f0; /* border-gray-300 do Tailwind */
-  border-radius: 0.5rem; /* rounded do Tailwind */
+  border-radius: 0.25rem; /* rounded do Tailwind */
   width: 100%; /* w-full do Tailwind */
   padding-top: 0.5rem; /* py-2 do Tailwind */
   padding-bottom: 0.5rem; /* py-2 do Tailwind */
@@ -114,77 +113,66 @@ button[type="submit"]:disabled {
 }
 
 /* Estilos para o modal (reutilizados do RegisterComponent) */
-.fixed.inset-0.bg-black.bg-opacity-50 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 50; /* z-50 do Tailwind */
+.modal.fade {
+  /* Estilos do Bootstrap para modais */
 }
 
-.bg-white.rounded-lg.shadow-lg.p-6 {
+.modal-dialog.modal-dialog-centered {
+  /* Estilos do Bootstrap para modais */
+}
+
+.modal-content {
   background-color: white;
   border-radius: 0.5rem; /* rounded-lg do Tailwind */
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg do Tailwind */
   padding: 1.5rem; /* p-6 do Tailwind */
-  width: 100%;
-  max-width: 32rem; /* max-w-2xl do Tailwind */
-  position: relative;
 }
 
-.bg-white.rounded-lg.shadow-lg.p-6 h3 {
+.modal-header {
+  border-bottom: 1px solid #dee2e6; /* Cor da borda do Bootstrap */
+  padding-bottom: 1rem; /* Espaçamento */
+  margin-bottom: 1rem; /* Espaçamento */
+}
+
+.modal-title {
   font-size: 1.5rem; /* text-2xl do Tailwind */
   font-weight: 700; /* font-bold do Tailwind */
   color: #db2777; /* text-pink-600 do Tailwind */
-  margin-bottom: 1rem; /* mb-4 do Tailwind */
 }
 
-.bg-white.rounded-lg.shadow-lg.p-6 button.absolute {
-  position: absolute;
-  top: 0.5rem; /* top-2 do Tailwind */
-  right: 0.5rem; /* right-2 do Tailwind */
-  color: #4b5563; /* text-gray-600 do Tailwind */
-  font-size: 1.25rem; /* text-xl do Tailwind */
-  font-weight: 700; /* font-bold do Tailwind */
-  cursor: pointer;
-  background: none;
+.modal-body {
+  color: #4b5563; /* text-gray-700 do Tailwind */
+  padding-bottom: 1.5rem; /* Espaçamento */
+}
+
+.modal-footer {
+  border-top: 1px solid #dee2e6; /* Cor da borda do Bootstrap */
+  padding-top: 1rem; /* Espaçamento */
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem; /* Espaçamento entre botões */
+}
+
+.btn-close {
+  /* Estilos do Bootstrap para o botão de fechar modal */
+}
+
+.btn-primary {
+  background-color: #ec4899; /* bg-pink-500 do Tailwind */
+  color: white;
   border: none;
 }
 
-.bg-white.rounded-lg.shadow-lg.p-6 button.absolute:hover {
-  color: #ef4444; /* hover:text-red-500 do Tailwind */
-}
-
-.max-h-96.overflow-y-auto {
-  max-height: 24rem; /* max-h-96 do Tailwind */
-  overflow-y: auto;
-  color: #4b5563; /* text-gray-700 do Tailwind */
-  margin-bottom: 1.5rem; /* mb-6 do Tailwind */
-}
-
-.flex.justify-end.gap-4 button {
-  background-color: #d1d5db; /* bg-gray-300 do Tailwind */
-  color: #374151; /* text-gray-800 do Tailwind */
-  font-weight: 700; /* font-bold do Tailwind */
-  padding: 0.5rem 1rem; /* py-2 px-4 do Tailwind */
-  border-radius: 9999px; /* rounded-full do Tailwind */
-  transition: all 0.15s ease-in-out; /* transition do Tailwind */
-}
-
-.flex.justify-end.gap-4 button:hover {
-  background-color: #9ca3af; /* hover:bg-gray-400 do Tailwind */
-}
-
-.flex.justify-end.gap-4 button.bg-pink-500 {
-  background-color: #ec4899; /* bg-pink-500 do Tailwind */
-  color: white;
-}
-
-.flex.justify-end.gap-4 button.bg-pink-500:hover {
+.btn-primary:hover {
   background-color: #db2777; /* hover:bg-pink-600 do Tailwind */
+}
+
+.btn-secondary {
+  background-color: #d1d5db; /* bg-gray-300 do Tailwind */
+  color: #374151;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #9ca3af; /* hover:bg-gray-400 do Tailwind */
 }

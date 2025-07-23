@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { InterfaceTestimonialCard } from '../../../models/interface.testimonial.card';
 import { Router } from '@angular/router';
 import { InterfaceProductCard } from './../../../models/interface.product.card';
+import { InterfaceCartItem } from '../../../models/interface.cart.item';
 
 @Component({
   selector: 'app-home-layout',
@@ -65,11 +66,35 @@ testimonials: InterfaceTestimonialCard[] = [
    * Navega para a página/formulário de deixar depoimento.
    */
    goToLeaveTestimonial(): void {
-    this.router.navigate(['/depoimentos/deixar']);
+    this.router.navigate(['/depoimento/deixar']);
   }
 
   goToAllTestimonials(): void {
     this.router.navigate(['/depoimentos']);
+  }
+
+    /**
+   * Adiciona produto ao carrinho e redireciona para o cardápio.
+   */
+  makeOrder(item: InterfaceProductCard): void {
+    const savedCart = localStorage.getItem('cart');
+    const cart: InterfaceCartItem[] = savedCart ? JSON.parse(savedCart) : [];
+
+    const existingItem = cart.find(i => i.id === item.id);
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      cart.push({
+        id: item.id ?? Math.floor(Math.random() * 100000), // Garante um ID se estiver ausente
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        quantity: 1
+      });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.router.navigate(['/cardapio']);
   }
 
 }

@@ -38,5 +38,9 @@ export class Orders implements OnInit {
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
+
+    // Limpa o carrinho após finalizar
+    this.cartItems = [];
+    localStorage.setItem('cart', JSON.stringify([]));
   }
 }

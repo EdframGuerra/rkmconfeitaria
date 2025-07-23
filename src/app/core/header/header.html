@@ -1,11 +1,11 @@
 <!-- Cabeçalho fixo com gradiente e sombra -->
-<header class="h-44 header-bg sticky top-0 z-50 shadow-md w-full">
+<header class="h-32 header-bg sticky top-0 z-50 shadow-md w-full">
   <div class="relative w-full h-full">
-    
+
     <!-- ÍCONE HAMBÚRGUER - ESQUERDA FIXA E CENTRALIZADO VERTICAL -->
     <div class="absolute top-1/2 left-4 transform -translate-y-1/2">
       <button
-        class="text-pink-600 hover:text-pink-300 focus:outline-none p-[10px] transition-all"
+        class="text-pink-700 hover:text-pink-300 focus:outline-none p-[10px] transition-all"
         (click)="toggleSidebar()"
         aria-label="Abrir menu"
         aria-expanded="isSidebarOpen"
@@ -15,8 +15,8 @@
     </div>
 
     <!-- LOGO - POSICIONADO COM RESPONSIVIDADE -->
-    <div class="absolute top-11 left-[8rem] sm:left-[10rem] md:left-[18rem]">
-      <img src="logo-rkm.png" alt="Logo" class="h-34 w-36" />
+    <div class="absolute top-8 left-[8rem] sm:left-[10rem] md:left-[8rem]">
+      <img src="logo-rkm.png" alt="Logo" class="h-28 w-32" />
     </div>
 
     <!-- FUNDO ESCURECIDO AO ABRIR O MENU NO MOBILE -->
@@ -45,7 +45,7 @@
 
         <!-- MENU DE LINKS -->
         <nav class="flex flex-col space-y-4 text-pink-600 font-semibold text-lg">
-          <a (click)="toggleSidebar()" [routerLink]="['/admin']" class="hover:text-pink-400 transition flex items-center space-x-3">
+          <a (click)="toggleSidebar()" [routerLink]="['auth/login']" class="hover:text-pink-400 transition flex items-center space-x-3">
             <i class="fas fa-user-shield"></i> <span>Admin</span>
           </a>
           <a (click)="toggleSidebar()" [routerLink]="['/home']" class="hover:text-pink-400 transition flex items-center space-x-3">
@@ -77,7 +77,7 @@
             [routerLink]="['/auth/login']"
             class="hover:text-pink-400 transition flex items-center space-x-3"
           >
-            <i class="fas fa-sign-in-alt"></i> <span>Login Cliente</span>
+            <i class="fas fa-sign-in-alt"></i> <span>Login</span>
           </a>
         </nav>
       </div>

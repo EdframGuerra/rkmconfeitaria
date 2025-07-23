@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +6,25 @@ import { Component } from '@angular/core';
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
-export class Header {
+export class Header implements OnInit, OnDestroy {
   isSidebarOpen = false;
+  isShrunk = false;
 
-  toggleSidebar(): void {
+  ngOnInit(): void {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
+
+  handleScroll = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    this.isShrunk = scrollTop > 50;
+  };
 }
 

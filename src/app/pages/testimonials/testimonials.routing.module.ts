@@ -8,12 +8,12 @@ import { LeaveTestimonialForm } from './leave.testimonial.form/leave.testimonial
 const routes: Routes = [
   {
     path: '', // Rota base para /depoimentos
-    component: TestimonialsPage, // Componente principal da rota /depoimentos
-    children: [
-      // Rota filha para o formulário de deixar depoimento
-      { path: 'deixar', component: LeaveTestimonialForm }, // <-- ADICIONAR ESTA ROTA FILHA
-    ],
+    component: TestimonialsPage
   },
+  {
+    path: 'deixar',
+    component: LeaveTestimonialForm
+  }
 ];
 
 @NgModule({
