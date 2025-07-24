@@ -1,0 +1,13 @@
+@keyframes carousel {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.carousel-track {
+  animation: carousel 30s linear infinite;
+  width: 200%; /* 2x a largura porque duplicamos os itens */
+}

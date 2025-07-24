@@ -1,83 +1,18 @@
-<section class="relative bg-white py-12">
-  <div class="container mx-auto px-4">
-    <!-- Título centralizado -->
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-center text-pink-600 mb-10">
-      Nossos Destaques
-    </h1>
-
-    <!-- Carrossel -->
-    <div
-      class="relative w-full max-w-4xl mx-auto overflow-hidden rounded-lg shadow-lg group"
-      (mouseenter)="pauseAutoplay()"
-      (mouseleave)="resumeAutoplay()"
-    >
-      <div
-        class="flex transition-transform duration-700 ease-in-out"
-        [ngStyle]="{ transform: 'translateX(-' + currentIndex * 100 + '%)' }"
-      >
-        <div
-          *ngFor="let item of carouselItems"
-          class="w-full flex-shrink-0 cursor-pointer bg-yellow-50"
-          (click)="openModal(item)"
-        >
-          <img
-            [src]="'' + item.image"
-            [alt]="item.name"
-            class="w-full h-[28rem] object-contain rounded"
-          />
-        </div>
-      </div>
-
-      <!-- Botões de navegação -->
-      <button
-        class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-opacity-70 hover:bg-opacity-100 px-3 py-2 rounded-r text-2xl"
-        (click)="prevSlide()"
-      >
-        ❮
-      </button>
-      <button
-        class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-opacity-70 hover:bg-opacity-100 px-3 py-2 rounded-l text-2xl"
-        (click)="nextSlide()"
-      >
-        ❯
-      </button>
-    </div>
-  </div>
-
-  <!-- Modal -->
+<!-- Container geral -->
+<div class="w-[80vw] mx-auto overflow-hidden rounded-lg shadow-lg group relative">
   <div
-    *ngIf="selectedItem"
-    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
+    class="carousel-track flex animate-carousel group-hover:[animation-play-state:paused]"
   >
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
-      <button
-        class="absolute top-2 right-2 text-xl font-bold text-gray-600 hover:text-red-600"
-        (click)="closeModal()"
-      >
-        &times;
-      </button>
-      <h3 class="text-2xl font-bold text-pink-600 mb-4">{{ selectedItem.name }}</h3>
+    <div
+      *ngFor="let item of extendedItems"
+      class="w-[8%] flex-shrink-0 cursor-pointer bg-yellow-50"
+      (click)="openModal(item)"
+    >
       <img
-        [src]="'' + selectedItem.image"
-        class="w-full h-60 object-contain rounded mb-4"
-        alt="{{ selectedItem.name }}"
+        [src]="item.image"
+        [alt]="item.name"
+        class="w-full h-[14rem] object-contain rounded"
       />
-      <p class="mb-2">{{ selectedItem.description }}</p>
-      <p class="font-bold text-pink-600 mb-4">R$ {{ selectedItem.price | number: '1.2-2' }}</p>
-      <div class="text-right">
-        <button
-          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full mr-2"
-          (click)="closeModal()"
-        >
-          Fechar
-        </button>
-        <button
-          class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full"
-          (click)="makeOrder(selectedItem)"
-        >
-          Fazer Pedido
-        </button>
-      </div>
     </div>
   </div>
-</section>
+</div>

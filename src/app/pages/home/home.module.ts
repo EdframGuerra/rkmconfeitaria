@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
 import { HomeLayout } from './home.layout/home.layout';
 import { ContactForm } from './contact.form/contact.form';
 import { Home } from './home/home';

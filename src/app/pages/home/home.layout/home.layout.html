@@ -1,68 +1,73 @@
 <!-- home.component.html -->
 <div class="flex flex-col gap-8 p-4">
-
   <!-- Título e subtítulo institucionais -->
   <div class="text-center">
-    <h4 class="text-3xl sm:text-4xl font-extrabold text-center text-pink-600 mb-10">
+    <h4
+      class="text-3xl sm:text-4xl font-extrabold text-center text-pink-400 mb-10"
+    >
       RKM Confeitaria
     </h4>
     <p class="text-lg text-pink-400">
-      Nossos produtos são cuidadosamente preparados com ingredientes nobres e um toque de delicadeza.
-      Mais do que doces, entregamos experiências que encantam os sentidos e transformam momentos simples
-      em memórias inesquecíveis.
+      Nossos produtos são cuidadosamente preparados com ingredientes nobres e um
+      toque de delicadeza. Mais do que doces, entregamos experiências que
+      encantam os sentidos e transformam momentos simples em memórias
+      inesquecíveis.
     </p>
   </div>
-
-  <!-- Título do carrossel -->
-  <!-- <div class="text-center">
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-pink-600 mb-6">
-      Nossos Destaques
-    </h1>
-  </div> -->
-
   <!-- Carrossel de destaques -->
   <div>
     <app-carousel></app-carousel>
   </div>
 
- <!-- Seção de produtos -->
-<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
-  <app-product-card
-    *ngFor="let product of products"
-    [productData]="product"
-    (onOrderClick)="makeOrder($event)">
-  </app-product-card>
-</div>
+  <!-- Seção de produtos -->
+  <h1
+    class="text-3xl sm:text-4xl font-extrabold text-center text-pink-400 mb-10"
+  >
+   Cardápio
+  </h1>
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-amber-50">
+    <app-product-card
+      *ngFor="let product of products"
+      [productData]="product"
+      (onOrderClick)="makeOrder($event)"
+    >
+    </app-product-card>
+  </div>
 
   <div class="w-full text-center mt-4">
-    <app-button (onClick)="goToCardapioCompleto()">Cardápio completo</app-button>
+    <app-button (onClick)="goToCardapioCompleto()"
+      >Cardápio completo</app-button
+    >
   </div>
 
-<!-- Seção "Cadastre-se", "Fale Conosco" e "Horário/Contatos" -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-stretch">
+  <!-- Seção "Cadastre-se", "Fale Conosco" e "Horário/Contatos" -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-stretch bg-amber-50"
+  >
+    <!-- Coluna 1: Incentivo -->
+    <div class="d-flex h-100">
+      <app-incentive-card class="flex-fill w-100 h-100"></app-incentive-card>
+    </div>
 
-  <!-- Coluna 1: Incentivo -->
-  <div class="d-flex h-100">
-    <app-incentive-card class="flex-fill w-100 h-100"></app-incentive-card>
+    <!-- Coluna 2: Formulário de Contato -->
+    <div class="d-flex h-100">
+      <app-contact-form class="flex-fill w-100 h-100"></app-contact-form>
+    </div>
+
+    <!-- Coluna 3: Horário e Contatos (empilhados) -->
+    <div class="d-flex flex-column gap-4 h-100">
+      <app-horario-funcionamento
+        class="flex-fill w-100 h-100"
+      ></app-horario-funcionamento>
+      <app-nossos-contatos class="flex-fill w-100 h-100"></app-nossos-contatos>
+    </div>
   </div>
-
-  <!-- Coluna 2: Formulário de Contato -->
-  <div class="d-flex h-100">
-    <app-contact-form class="flex-fill w-100 h-100"></app-contact-form>
-  </div>
-
-  <!-- Coluna 3: Horário e Contatos (empilhados) -->
-  <div class="d-flex flex-column gap-4 h-100">
-    <app-horario-funcionamento class="flex-fill w-100 h-100"></app-horario-funcionamento>
-    <app-nossos-contatos class="flex-fill w-100 h-100"></app-nossos-contatos>
-  </div>
-
-</div>
-
 
   <!-- Depoimentos -->
   <div class="text-center mt-12">
-    <h2 class="text-3xl font-extrabold text-pink-600 mb-2">O que nossos clientes dizem</h2>
+    <h2 class="text-3xl font-extrabold text-pink-600 mb-2">
+      O que nossos clientes dizem
+    </h2>
     <p class="text-gray-500 mb-10">
       A satisfação dos nossos clientes é o nosso maior orgulho
     </p>
@@ -71,17 +76,22 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
     <app-testimonials-card
       *ngFor="let testimonial of testimonials.slice(0, 3)"
-      [testimonial]="testimonial">
+      [testimonial]="testimonial"
+    >
     </app-testimonials-card>
   </div>
 
   <!-- Botões dos depoimentos centralizados -->
   <div class="w-full text-center mt-8">
-    <div class="inline-flex flex-col md:flex-row justify-center items-center gap-4">
-      <app-button (onClick)="goToLeaveTestimonial()">Deixe seu depoimento</app-button>
-      <app-button (onClick)="goToAllTestimonials()">Ver todos os depoimentos</app-button>
+    <div
+      class="inline-flex flex-col md:flex-row justify-center items-center gap-4"
+    >
+      <app-button (onClick)="goToLeaveTestimonial()"
+        >Deixe seu depoimento</app-button
+      >
+      <app-button (onClick)="goToAllTestimonials()"
+        >Ver todos os depoimentos</app-button
+      >
     </div>
   </div>
-
 </div>
-

@@ -4,14 +4,13 @@ import { Router } from '@angular/router';
 import { InterfaceProductCard } from '../../../models/interface.product.card';
 import { InterfaceCartItem } from '../../../models/interface.cart.item';
 
-
 @Component({
   selector: 'app-carousel',
   standalone: false,
   templateUrl: './carousel.html',
   styleUrls: ['./carousel.css'],
 })
-export class Carousel implements OnInit, OnDestroy {
+export class Carousel implements OnInit {
   carouselItems: InterfaceProductCard[] = [
     {
       id: 1,
@@ -42,50 +41,30 @@ export class Carousel implements OnInit, OnDestroy {
       price: 85.5,
       image: 'torta-chocolate-ganache.png',
     },
+    {
+      id: 11,
+      name: 'Torta de doce de leite',
+      description: 'Torta doce e suave com cobertura de doce de leite',
+      price: 91.0,
+      image: 'torta-de-doce-de-leite.png',
+    },
+    {
+      id: 12,
+      name: 'Torta dois amores',
+      description: 'Delicioso mix de chocolate branco e preto',
+      price: 95.0,
+      image: 'torta-dois-amores.png',
+    },
   ];
 
-  currentIndex = 0;
-  autoplayInterval: any;
+  extendedItems: InterfaceProductCard[] = [];
   selectedItem: InterfaceProductCard | null = null;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.startAutoplay();
-  }
-
-  ngOnDestroy(): void {
-    this.clearAutoplay();
-  }
-
-  startAutoplay() {
-    this.autoplayInterval = setInterval(() => {
-      this.nextSlide();
-    }, 5000);
-  }
-
-  pauseAutoplay() {
-    this.clearAutoplay();
-  }
-
-  resumeAutoplay() {
-    this.startAutoplay();
-  }
-
-  clearAutoplay() {
-    if (this.autoplayInterval) {
-      clearInterval(this.autoplayInterval);
-    }
-  }
-
-  nextSlide() {
-    this.currentIndex = (this.currentIndex + 1) % this.carouselItems.length;
-  }
-
-  prevSlide() {
-    this.currentIndex =
-      (this.currentIndex - 1 + this.carouselItems.length) %
-      this.carouselItems.length;
+    // Duplicar os itens para efeito de carrossel infinito
+    this.extendedItems = [...this.carouselItems, ...this.carouselItems];
   }
 
   openModal(item: InterfaceProductCard) {
