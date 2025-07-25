@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { DashboardAdmin } from './dashboard.admin';
-import { SharedModule } from '../../shared/shared.module';
-import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: DashboardAdmin }
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    SharedModule
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class DashboardAdminRoutingModule { }
+export class DashboardAdminRoutingModule {}
+

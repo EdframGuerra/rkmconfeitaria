@@ -3,14 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
-* Definição de variáveis CSS para cores (opcional, mas útil para consistência) */
-:root {
-  --color-pink-600: #db2777; /* Cor rosa principal */
-  --color-pink-500: #ec4899; /* Cor rosa mais clara */
-  --color-amber-50: #fffbeb; /* Amarelo bem fraquinho */
-  --color-gray-text: #4a4a4a; /* Cor para parágrafos */
-  --color-pink-shadow: rgba(236, 72, 153, 0.2); /* Sombra rosa suave */
-}
+
+
 
 /* Estilos Globais */
 body {

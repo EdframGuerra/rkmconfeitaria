@@ -7,13 +7,14 @@ import { InterfaceLogin } from '../../../models/interface.login';
   selector: 'app-login',
   standalone: false,
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrls: ['./login.css'],
 })
 export class Login implements OnInit {
   loginData: InterfaceLogin = { email: '', password: '' };
   errorMessage: string = '';
   termsAccepted: boolean = false;
   isTermsModalOpen: boolean = false;
+  isPrivacyModalOpen: boolean = false;
   title: string = 'Acesso ao Clube de Doces';
 
   constructor(private router: Router, private authService: AuthService) {}
@@ -40,7 +41,10 @@ export class Login implements OnInit {
       return;
     }
 
-    const loggedIn = this.authService.login(this.loginData.email, this.loginData.password);
+    const loggedIn = this.authService.login(
+      this.loginData.email,
+      this.loginData.password
+    );
 
     if (loggedIn) {
       const userType = this.authService.getUserType();
@@ -62,8 +66,11 @@ export class Login implements OnInit {
     this.isTermsModalOpen = false;
   }
 
-  acceptTerms(): void {
-    this.termsAccepted = true;
-    this.isTermsModalOpen = false;
+  openPrivacyModal(): void {
+    this.isPrivacyModalOpen = true;
+  }
+
+  closePrivacyModal(): void {
+    this.isPrivacyModalOpen = false;
   }
 }

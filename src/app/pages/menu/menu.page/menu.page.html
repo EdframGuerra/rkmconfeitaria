@@ -1,7 +1,7 @@
 <!-- menu.page.html -->
 <section class="py-16 bg-white">
   <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-extrabold text-center text-pink-600 mb-14">
+    <h2 class="text-4xl font-extrabold text-center text-pink-500 mb-14">
       Nosso Cardápio Completo
     </h2>
 
@@ -10,9 +10,9 @@
         <img [src]="'' + product.image" alt="{{ product.name }}" class="w-full h-48 object-cover rounded mb-4" />
         <h3 class="text-xl font-semibold mb-2">{{ product.name }}</h3>
         <p class="mb-2">{{ product.description }}</p>
-        <p class="font-bold text-pink-600 mb-4">R$ {{ product.price | number:'1.2-2' }}</p>
-        <button (click)="addToCart(product)" class="btn btn-primary w-full mb-2">Adicionar ao Pedido</button>
-        <button (click)="openProductModal(product)" class="btn btn-outline-secondary w-full">Detalhes</button>
+        <p class="font-bold text-pink-400 mb-4">R$ {{ product.price | number:'1.2-2' }}</p>
+        <button (click)="addToCart(product)" class="btn font-semibold bg-pink-400 text-white hover:bg-pink-500 w-full mb-2">Adicionar ao Pedido</button>
+        <button (click)="openProductModal(product)" class="btn font-semibold bg-pink-400 text-white hover:bg-pink-500 w-full">Detalhes</button>
       </div>
     </div>
 

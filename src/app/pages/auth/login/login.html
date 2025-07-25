@@ -5,82 +5,111 @@
     </h2>
 
     <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8">
-      <h3 class="text-2xl font-bold text-pink-600 mb-6 text-center">Faça seu Login</h3>
-
-      <form (ngSubmit)="submitLogin()" #loginForm="ngForm" novalidate>
-        <div class="mb-4">
-          <label for="email" class="block text-gray-700 text-sm font-bold mb-2">E-mail</label>
+      <form class="space-y-6" (ngSubmit)="submitLogin()" #loginForm="ngForm">
+        <div>
+          <label class="block mb-1 font-medium text-gray-700" for="email">Email</label>
           <input
             type="email"
             id="email"
             name="email"
             [(ngModel)]="loginData.email"
             required
-            email
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="w-full border border-gray-300 p-2 rounded"
+            #email="ngModel"
           />
+          <div *ngIf="email.invalid && email.touched" class="text-red-600 text-sm mt-1">
+            Email é obrigatório e deve ser válido.
+          </div>
         </div>
 
-        <div class="mb-4">
-          <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
+        <div>
+          <label class="block mb-1 font-medium text-gray-700" for="password">Senha</label>
           <input
             type="password"
             id="password"
             name="password"
             [(ngModel)]="loginData.password"
             required
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="w-full border border-gray-300 p-2 rounded"
+            #password="ngModel"
           />
+          <div *ngIf="password.invalid && password.touched" class="text-red-600 text-sm mt-1">
+            Senha é obrigatória.
+          </div>
         </div>
 
-        <div class="mb-4 form-check">
+        <div class="flex items-center gap-2">
           <input
             type="checkbox"
-            id="termsAccepted"
-            name="termsAccepted"
+            id="acceptTerms"
+            name="acceptTerms"
             [(ngModel)]="termsAccepted"
             required
-            class="form-check-input"
+            #acceptTerms="ngModel"
           />
-          <label for="termsAccepted" class="form-check-label text-gray-700 text-sm">
-            Eu aceito os
-            <a (click)="openTermsModal()" class="text-pink-600 hover:text-pink-800 cursor-pointer underline">
-              Termos e Condições
+          <label for="acceptTerms" class="text-sm text-gray-700">
+            Eu li e aceito os
+            <a href="#" (click)="openTermsModal(); $event.preventDefault()" class="text-pink-600 underline">
+              Termos de Uso
+            </a>
+            e a
+            <a href="#" (click)="openPrivacyModal(); $event.preventDefault()" class="text-pink-600 underline">
+              Política de Privacidade
             </a>.
           </label>
         </div>
-
-        <div *ngIf="errorMessage" class="text-red-600 mb-4">
-          {{ errorMessage }}
+        <div *ngIf="loginForm.submitted && !termsAccepted" class="text-red-600 text-sm">
+          Você deve aceitar os termos e condições.
         </div>
 
-        <div class="flex items-center justify-center">
-          <button
-            type="submit"
-            [disabled]="!loginForm.form.valid || !termsAccepted"
-            class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline transition disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Entrar
-          </button>
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid || !termsAccepted"
+          class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded"
+        >
+          Entrar
+        </button>
+
+        <div *ngIf="errorMessage" class="text-red-600 mt-3 text-center font-semibold">
+          {{ errorMessage }}
         </div>
       </form>
     </div>
   </div>
-</section>
 
-<!-- Modal de Termos e Condições -->
-<div
-  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-  *ngIf="isTermsModalOpen"
->
-  <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl relative">
-    <h3 class="text-2xl font-bold text-pink-600 mb-4">Termos e Condições de Acesso</h3>
-    <div class="max-h-96 overflow-y-auto text-gray-700 mb-6">
-      <p><strong>1. Aceitação dos Termos:</strong> Ao acessar e utilizar esta plataforma...</p>
-    </div>
-    <div class="flex justify-end gap-4">
-      <button (click)="closeTermsModal()" class="btn btn-secondary">Fechar</button>
-      <button (click)="acceptTerms()" class="btn btn-primary">Aceitar Termos</button>
+  <!-- Modal - Termos de Uso -->
+  <div
+    *ngIf="isTermsModalOpen"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+  >
+    <div class="bg-white p-6 rounded max-w-lg w-full shadow-xl">
+      <h3 class="text-xl font-bold mb-4">Termos de Uso</h3>
+      <p class="text-sm text-gray-700">
+        Ao acessar nosso site e utilizar nossos serviços, você concorda em não realizar atividades ilegais,
+        proteger suas credenciais de acesso e utilizar o conteúdo de forma responsável. Reservamo-nos o
+        direito de modificar estes termos a qualquer momento.
+      </p>
+      <div class="text-right mt-4">
+        <button (click)="closeTermsModal()" class="text-pink-600 font-semibold">Fechar</button>
+      </div>
     </div>
   </div>
-</div>
+
+  <!-- Modal - Política de Privacidade -->
+  <div
+    *ngIf="isPrivacyModalOpen"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+  >
+    <div class="bg-white p-6 rounded max-w-lg w-full shadow-xl">
+      <h3 class="text-xl font-bold mb-4">Política de Privacidade</h3>
+      <p class="text-sm text-gray-700">
+        Coletamos e armazenamos informações fornecidas por você para fins de autenticação e melhoria da
+        experiência. Seus dados não serão compartilhados com terceiros sem consentimento, exceto quando
+        exigido por lei.
+      </p>
+      <div class="text-right mt-4">
+        <button (click)="closePrivacyModal()" class="text-pink-600 font-semibold">Fechar</button>
+      </div>
+    </div>
+  </div>
+</section>

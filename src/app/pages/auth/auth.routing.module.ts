@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { Auth } from './auth';
 import { FormsModule } from '@angular/forms';
 import { Register } from './register/register';
 import { Login } from './login/login';
+import { Auth } from './auth/auth';
 
 const routes: Routes = [
   { path: '', component: Auth },
