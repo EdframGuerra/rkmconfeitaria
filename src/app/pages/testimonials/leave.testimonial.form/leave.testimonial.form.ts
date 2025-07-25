@@ -72,7 +72,7 @@ export class LeaveTestimonialForm implements OnInit {
       alert(
         'Você precisa estar cadastrado para deixar um depoimento. Por favor, faça seu cadastro!'
       );
-      this.router.navigate(['/auth/register']); // Redireciona para a página de cadastro
+      this.router.navigate(['/auth/register']);
       return;
     }
 
@@ -81,10 +81,26 @@ export class LeaveTestimonialForm implements OnInit {
       return;
     }
 
-    console.log('Depoimento enviado:', this.formData);
-    // Em um projeto real, você enviaria este depoimento para um serviço de backend.
+    // Gerar um novo depoimento baseado nos dados do formulário
+    const newTestimonial = {
+      id: Date.now(), // Gera um ID único baseado em timestamp
+      name: this.formData.isAnonymous ? 'Anônimo' : this.formData.name,
+      email: this.formData.email,
+      rating: this.formData.rating,
+      message: this.formData.message,
+      isAnonymous: this.formData.isAnonymous,
+    };
 
-    this.isConfirmationModalOpen = true; // Exibe modal de confirmação
+    // Salvar no localStorage
+    const existing = JSON.parse(
+      localStorage.getItem('userTestimonials') || '[]'
+    );
+    existing.push(newTestimonial);
+    localStorage.setItem('userTestimonials', JSON.stringify(existing));
+
+    console.log('Depoimento salvo:', newTestimonial);
+
+    this.isConfirmationModalOpen = true;
   }
 
   /**

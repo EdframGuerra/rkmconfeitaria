@@ -70,7 +70,7 @@ export class HomeLayout {
    * Navega para a página/formulário de deixar depoimento.
    */
   goToLeaveTestimonial(): void {
-    this.router.navigate(['/depoimento/deixar']);
+    this.router.navigate(['/depoimentos/deixar']);
   }
 
   goToAllTestimonials(): void {
