@@ -1,5 +1,4 @@
-// carousel.component.ts
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InterfaceProductCard } from '../../../models/interface.product.card';
 import { InterfaceCartItem } from '../../../models/interface.cart.item';
@@ -59,11 +58,11 @@ export class Carousel implements OnInit {
 
   extendedItems: InterfaceProductCard[] = [];
   selectedItem: InterfaceProductCard | null = null;
+  confirmationModalOpen = false;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // Duplicar os itens para efeito de carrossel infinito
     this.extendedItems = [...this.carouselItems, ...this.carouselItems];
   }
 
@@ -93,7 +92,13 @@ export class Carousel implements OnInit {
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
-    this.closeModal();
+
+    this.selectedItem = null;
+    this.confirmationModalOpen = true;
+  }
+
+  closeConfirmationModal() {
+    this.confirmationModalOpen = false;
     this.router.navigate(['/cardapio']);
   }
 }

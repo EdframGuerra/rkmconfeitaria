@@ -1,23 +1,56 @@
-<div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between h-full">
-  <h3 class="text-2xl font-bold text-pink-500 mb-6 text-center">Envie sua mensagem</h3>
+<div
+  id="contato"
+  class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between h-full"
+>
+  <h3 class="text-2xl font-bold text-pink-400 mb-6 text-center">
+    Envie sua mensagem
+  </h3>
 
-  <form (ngSubmit)="submitForm()" #contactForm="ngForm" class="flex flex-col gap-4 flex-grow">
+  <form
+    (ngSubmit)="submitForm()"
+    #contactForm="ngForm"
+    class="flex flex-col gap-4 flex-grow"
+  >
     <div>
-      <label for="name" class="block text-gray-700 text-sm font-bold mb-1">Seu Nome</label>
-      <input type="text" id="name" name="name" [(ngModel)]="formData.name" required
-        class="w-full border rounded py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-300">
+      <label for="name" class="block text-gray-700 text-sm font-bold mb-1"
+        >Seu Nome</label
+      >
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="formData.name"
+        required
+        class="w-full border rounded py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-300"
+      />
     </div>
 
     <div>
-      <label for="email" class="block text-gray-700 text-sm font-bold mb-1">Seu E-mail</label>
-      <input type="email" id="email" name="email" [(ngModel)]="formData.email" required email
-        class="w-full border rounded py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-300">
+      <label for="email" class="block text-gray-700 text-sm font-bold mb-1"
+        >Seu E-mail</label
+      >
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="formData.email"
+        required
+        email
+        class="w-full border rounded py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-300"
+      />
     </div>
 
     <div>
-      <label for="subject" class="block text-gray-700 text-sm font-bold mb-1">Assunto</label>
-      <select id="subject" name="subject" [(ngModel)]="formData.subject" required
-        class="w-full border rounded py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-300">
+      <label for="subject" class="block text-gray-700 text-sm font-bold mb-1"
+        >Assunto</label
+      >
+      <select
+        id="subject"
+        name="subject"
+        [(ngModel)]="formData.subject"
+        required
+        class="w-full border rounded py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-300"
+      >
         <option value="">Selecione...</option>
         <option value="Pedido">Pedido</option>
         <option value="Duvida">Dúvida</option>
@@ -28,16 +61,62 @@
     </div>
 
     <div>
-      <label for="message" class="block text-gray-700 text-sm font-bold mb-1">Mensagem</label>
-      <textarea id="message" name="message" [(ngModel)]="formData.message" rows="4" required
-        class="w-full border rounded py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-300"></textarea>
+      <label for="message" class="block text-gray-700 text-sm font-bold mb-1"
+        >Mensagem</label
+      >
+      <textarea
+        id="message"
+        name="message"
+        [(ngModel)]="formData.message"
+        rows="4"
+        required
+        class="w-full border rounded py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-300"
+      ></textarea>
     </div>
 
     <div class="text-center mt-4">
-      <button type="submit" [disabled]="!contactForm.form.valid"
-        class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-2 px-6 rounded-full transition disabled:opacity-50 disabled:cursor-not-allowed">
+      <button
+        type="submit"
+        [disabled]="!contactForm.form.valid"
+        class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-2 px-6 rounded-full transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
         Enviar Mensagem
       </button>
     </div>
   </form>
+</div>
+
+<!-- Modal Bootstrap para confirmação -->
+<div
+  class="modal fade"
+  id="contactMessageModal"
+  tabindex="-1"
+  aria-labelledby="contactMessageModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-xl">
+      <div class="modal-header bg-pink-500 text-white rounded-top">
+        <h5 class="modal-title" id="contactMessageModalLabel">{{ modalTitle }}</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Fechar"
+        ></button>
+      </div>
+      <div class="modal-body text-gray-800 p-4">
+        {{ modalMessage }}
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-pink bg-pink-500 hover:bg-pink-600 text-white rounded-full px-4 py-2"
+          data-bs-dismiss="modal"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

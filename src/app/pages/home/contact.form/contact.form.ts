@@ -5,63 +5,78 @@ import { InterfaceContactFormData } from './../../../models/imterface.contact.fo
   selector: 'app-contact-form',
   standalone: false,
   templateUrl: './contact.form.html',
-  styleUrl: './contact.form.css'
+  styleUrl: './contact.form.css',
 })
 export class ContactForm implements OnInit {
-  formData: InterfaceContactFormData = { // Modelo para o formulário
+  formData: InterfaceContactFormData = {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   };
 
   modalTitle: string = '';
   modalMessage: string = '';
-  private contactMessageModal: any; // Referência ao objeto modal do Bootstrap
+  private contactMessageModal: any;
+  private whatsappURL: string = '';
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    // Inicializa o modal do Bootstrap
     setTimeout(() => {
       const modalElement = document.getElementById('contactMessageModal');
       if (modalElement && (window as any).bootstrap) {
-        this.contactMessageModal = new (window as any).bootstrap.Modal(modalElement);
+        this.contactMessageModal = new (window as any).bootstrap.Modal(
+          modalElement
+        );
+
+        // Escuta o fechamento do modal
+        modalElement.addEventListener('hidden.bs.modal', () => {
+          if (this.whatsappURL) {
+            window.open(this.whatsappURL, '_blank');
+            this.whatsappURL = ''; // limpa para evitar redirecionamentos duplos
+          }
+        });
       } else {
-        console.warn("Bootstrap Modal para mensagens de encomenda não pôde ser inicializado.");
+        console.warn(
+          'Bootstrap Modal para mensagens de contato não pôde ser inicializado.'
+        );
       }
     }, 0);
   }
 
-  /**
-   * Simula a submissão do formulário de contato.
-   * Em um projeto real, aqui você enviaria os dados para um serviço de backend.
-   */
   submitForm(): void {
-    // Lógica de envio simulada
-    console.log('Dados do formulário de contato:', this.formData);
+    const phoneNumber = '5571986893011';
 
-    // Exibe modal de sucesso
-    this.showModal('Mensagem Enviada!', 'Obrigado por sua mensagem! Responderemos em breve.');
+    const message =
+      `Olá, meu nome é ${this.formData.name}.\n` +
+      `Email: ${this.formData.email}\n` +
+      `Assunto: ${this.formData.subject}\n` +
+      `Mensagem: ${this.formData.message}`;
 
-    // Opcional: Limpar o formulário após o envio
-    // if (contactForm) { // Você precisaria passar a referência do formulário aqui
-    //   contactForm.resetForm();
-    // }
+    this.whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    // Mostra o modal primeiro
+    this.showModal(
+      'Mensagem Enviada!',
+      'Clique em "Fechar" para ser redirecionado ao WhatsApp.'
+    );
+
+    // Limpa o formulário após o envio
+    this.formData = { name: '', email: '', subject: '', message: '' };
   }
 
-  /**
-   * Exibe o modal com a mensagem e título fornecidos.
-   * @param title Título do modal.
-   * @param message Mensagem a ser exibida no modal.
-   */
   showModal(title: string, message: string): void {
     this.modalTitle = title;
     this.modalMessage = message;
     if (this.contactMessageModal) {
       this.contactMessageModal.show();
     } else {
-      console.warn(`Modal de mensagem de contato não inicializado: ${title} - ${message}`);
+      console.warn(
+        `Modal de mensagem de contato não inicializado: ${title} - ${message}`
+      );
     }
   }
 }

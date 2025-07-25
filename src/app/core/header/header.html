@@ -67,8 +67,7 @@
           >
             <i class="fas fa-book-open"></i> <span>Cardápio</span>
           </a>
-          
-         
+
           <!-- Cadastro Cliente -->
           <a
             (click)="toggleSidebar()"
@@ -85,7 +84,18 @@
           >
             <i class="fas fa-sign-in-alt"></i> <span>Login</span>
           </a>
-           <a
+          <!--Fale conosco-->
+          <a
+            (click)="toggleSidebar()"
+            [routerLink]="['/home']"
+            [fragment]="'contato'"
+            class="hover:text-pink-400 transition flex items-center space-x-3"
+          >
+            <i class="fas fa-envelope"></i> <span>Fale Conosco</span>
+          </a>
+
+          <!--Depoimentos-->
+          <a
             (click)="toggleSidebar()"
             [routerLink]="['/depoimentos']"
             class="hover:text-pink-400 transition flex items-center space-x-3"

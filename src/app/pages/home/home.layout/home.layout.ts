@@ -16,7 +16,7 @@ export class HomeLayout {
       id: 1,
       name: 'Torta de Brigadeiro',
       description:
-        'Delicioso bolo de chocolate com cobertura de brigadeiro cremoso',
+        'Delicioso bolo de chocolate com cobertura de brigadeiro',
       price: 89.9,
       image: 'torta-brigadeiro2.png',
     },
