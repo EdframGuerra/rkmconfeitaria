@@ -48,6 +48,7 @@ const routes: Routes = [
   },
   // Redirecionamento para /home quando o path for vazio
   { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'customer-area', loadChildren: () => import('./pages/customer.area/customer.area.module').then(m => m.CustomerAreaModule) },
   // Rota coringa para páginas não encontradas
   { path: '**', redirectTo: 'home' },
 ];

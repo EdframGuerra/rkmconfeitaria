@@ -1,0 +1,94 @@
+/* Estilos para a seção da Área do Cliente */
+
+section {
+  padding-top: 3rem; /* py-5 do Bootstrap */
+  padding-bottom: 3rem; /* py-5 do Bootstrap */
+  background-color: #f8f9fa; /* bg-light do Bootstrap */
+  min-height: 100vh; /* Garante que a seção ocupe a altura total da viewport */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 960px; /* Largura máxima para o container */
+}
+
+h2 {
+  font-size: 2.5rem; /* display-4 do Bootstrap */
+  font-weight: 700; /* fw-bold do Bootstrap */
+  text-align: center;
+  color: #db2777; /* Cor rosa */
+  margin-bottom: 3rem; /* mb-5 do Bootstrap */
+}
+
+p.lead {
+  font-size: 1.25rem; /* lead do Bootstrap */
+  color: #4a4a4a; /* text-gray-700 */
+  text-align: center;
+  margin-bottom: 3rem; /* mb-5 do Bootstrap */
+}
+
+.row {
+  --bs-gutter-x: 1.5rem; /* g-4 do Bootstrap */
+  --bs-gutter-y: 1.5rem; /* g-4 do Bootstrap */
+}
+
+.card {
+  border: none; /* Remove borda padrão do card */
+  border-radius: 0.75rem; /* rounded-xl do Tailwind (simulado) */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* shadow-sm do Bootstrap */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  min-height: 220px; /* Altura mínima para os cards */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Sombra mais forte no hover */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem; /* p-4 do Bootstrap */
+}
+
+.card-body i {
+  color: #ec4899; /* text-pink-500 do Tailwind (simulado) */
+  margin-bottom: 1rem; /* mb-3 do Bootstrap */
+}
+
+.card-title {
+  font-size: 1.25rem; /* text-lg do Bootstrap */
+  font-weight: 700; /* fw-bold do Bootstrap */
+  color: #212529; /* text-gray-800 do Tailwind (simulado) */
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.875rem; /* text-sm do Bootstrap */
+  color: #6c757d; /* text-gray-600 do Tailwind (simulado) */
+  text-align: center;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+}
+
+.btn-outline-primary {
+  color: #0d6efd;
+  border-color: #0d6efd;
+  background-color: transparent;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-outline-primary:hover {
+  color: white;
+  background-color: #0d6efd;
+}
+
+.mt-auto { margin-top: auto; } /* mt-auto do Bootstrap */
