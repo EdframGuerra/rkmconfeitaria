@@ -3,7 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* src/styles.css */
+.main-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 /* Estilos Globais */
