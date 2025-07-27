@@ -13,6 +13,8 @@ export class AuthService {
     if (email === 'admin@rkm.com' && password === 'admin123') {
       localStorage.setItem(this.tokenKey, 'rkm-admin-token');
       localStorage.setItem(this.userTypeKey, 'admin');
+      // Opcional: pode salvar nome admin aqui, se quiser
+      // localStorage.setItem('userName', 'Administrador');
       return true;
     }
 
@@ -20,6 +22,7 @@ export class AuthService {
     if (email && password) {
       localStorage.setItem(this.tokenKey, 'rkm-client-token');
       localStorage.setItem(this.userTypeKey, 'client');
+      localStorage.setItem('userName', 'Cliente Comum'); // Salva nome do cliente
       return true;
     }
 
@@ -29,6 +32,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userTypeKey);
+    localStorage.removeItem('userName'); // Remove nome também no logout
     this.router.navigate(['/auth/login']);
   }
 
