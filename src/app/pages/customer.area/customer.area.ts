@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service'; // ajuste o caminho c
 
 @Component({
   selector: 'app-customer-area',
+  standalone: false,
   templateUrl: './customer.area.html',
   styleUrls: ['./customer.area.css']
 })
