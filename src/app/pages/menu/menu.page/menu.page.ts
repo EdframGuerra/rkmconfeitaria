@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InterfaceCartItem } from './../../../models/interface.cart.item';
 import { CartService } from '../../../services/cart.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs'; // Adicionado 'map' aqui
 import { InterfaceProductCard } from '../../../models/interface.product.card';
 
 @Component({
@@ -13,12 +13,13 @@ import { InterfaceProductCard } from '../../../models/interface.product.card';
   styleUrl: './menu.page.css',
 })
 export class MenuPage implements OnInit, OnDestroy {
-  // Implementar OnDestroy
   allProducts: InterfaceProductCard[] = [];
-  cartItems: InterfaceCartItem[] = [];
+  cartItems: InterfaceCartItem[] = []; // Mantido para caso precise em outra lógica
   selectedProduct: InterfaceProductCard | null = null;
-  cartQuantity = 0;
-  private cartSubscription!: Subscription; // Para gerenciar a inscrição
+  // cartQuantity = 0; // Removido, pois o contador será um Observable
+  // private cartSubscription!: Subscription; // Removido, pois async pipe gerencia
+
+  cartTotalQuantity$!: Observable<number>; // NOVO: Observable para a quantidade total do carrinho
 
   constructor(private router: Router, private cartService: CartService) {}
 
@@ -145,40 +146,41 @@ export class MenuPage implements OnInit, OnDestroy {
       },
     ];
 
-    // Inscreve-se no observable do carrinho para receber atualizações em tempo real
-    this.cartSubscription = this.cartService.cartItems$.subscribe((items) => {
+    // NOVO: Define o Observable para a quantidade total do carrinho
+    this.cartTotalQuantity$ = this.cartService.cartItems$.pipe(
+      map((items) => items.reduce((acc, item) => acc + item.quantity, 0))
+    );
+
+    // Se ainda precisar da lista `this.cartItems` no TS por outros motivos, mantenha esta inscrição.
+    // Se for só para o contador, pode removê-la e simplificar.
+    this.cartService.cartItems$.subscribe((items) => {
       this.cartItems = items;
-      this.cartQuantity = this.getCartQuantity(); // Atualiza a quantidade total
-      console.log(
-        'DEBUG: MenuPage - Carrinho atualizado para:',
-        this.cartQuantity,
-        'itens.'
-      );
     });
   }
 
   ngOnDestroy(): void {
-    // Garante que a inscrição seja cancelada para evitar vazamentos de memória
-    if (this.cartSubscription) {
-      this.cartSubscription.unsubscribe();
-    }
+    // O `async` pipe gerencia a desinscrição automaticamente para `cartTotalQuantity$`.
+    // Se você manteve a inscrição manual para `this.cartItems` acima, você precisaria de uma Subscription para ela e desinscrevê-la aqui.
   }
 
   addToCart(product: InterfaceProductCard) {
-    // Usa o serviço para adicionar o item, que por sua vez atualiza o BehaviorSubject
+    console.log(
+      'DEBUG: MenuPage - Adicionando item via addToCart:',
+      product.name
+    );
     this.cartService.addItem({
-      id: product.id ?? Math.floor(Math.random() * 100000), // Garante um ID se estiver ausente
+      id: product.id ?? Math.floor(Math.random() * 100000),
       name: product.name,
       price: product.price,
       image: product.image,
       quantity: 1,
     });
-    // Não é mais necessário manipular localStorage diretamente aqui
   }
 
-  getCartQuantity(): number {
-    return this.cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  }
+  // getCartQuantity() não é mais usado no template, então pode ser removido
+  // getCartQuantity(): number {
+  //   return this.cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  // }
 
   goToOrders() {
     this.router.navigate(['/encomendas']);
