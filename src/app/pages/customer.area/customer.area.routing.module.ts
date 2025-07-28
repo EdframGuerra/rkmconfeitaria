@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import { CustomerArea } from './customer.area';
 
-
+const routes: Routes = [
+  { path: '', component: CustomerArea }
+];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class CustomerAreaRoutingModule { }
+export class CustomerAreaRoutingModule {}
+
