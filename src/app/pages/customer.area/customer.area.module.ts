@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
+import { CustomerArea } from './customer.area';
 import { CustomerAreaRoutingModule } from './customer.area.routing.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CustomerArea
+  ],
   imports: [
     CommonModule,
-    CustomerAreaRoutingModule],
+    RouterModule.forChild(routes),
+    CustomerAreaRoutingModule
+  ]
 })
-export class CustomerAreaModule {}
+export class CustomerAreaModule { }

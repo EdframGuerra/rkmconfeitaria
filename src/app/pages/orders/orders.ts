@@ -1,6 +1,8 @@
 // orders.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { InterfaceCartItem } from '../../models/interface.cart.item';
+import { CartService } from '../../services/cart.service'; // Adicionado
+import { Subscription } from 'rxjs'; // Adicionado
 
 @Component({
   selector: 'app-orders',
@@ -8,12 +10,26 @@ import { InterfaceCartItem } from '../../models/interface.cart.item';
   templateUrl: './orders.html',
   styleUrl: './orders.css'
 })
-export class Orders implements OnInit {
+export class Orders implements OnInit, OnDestroy {
   cartItems: InterfaceCartItem[] = [];
+  private cartSubscription!: Subscription; // Para gerenciar a inscrição
+
+  constructor(private cartService: CartService) {} // Injeta CartService
 
   ngOnInit(): void {
-    const savedCart = localStorage.getItem('cart');
-    this.cartItems = savedCart ? JSON.parse(savedCart) : [];
+    // Inscreve-se no observable do carrinho para receber atualizações em tempo real
+    this.cartSubscription = this.cartService.cartItems$.subscribe(items => {
+      this.cartItems = items; // A lista local de itens do carrinho é atualizada pelo serviço
+    });
+    // O cartService já carrega os itens do localStorage em sua inicialização
+    // Não é mais necessário this.cartItems = savedCart ? JSON.parse(savedCart) : []; aqui.
+  }
+
+  ngOnDestroy(): void {
+    // Garante que a inscrição seja cancelada para evitar vazamentos de memória
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
   }
 
   getTotal(): number {
@@ -21,8 +37,8 @@ export class Orders implements OnInit {
   }
 
   removeItem(itemId: number): void {
-    this.cartItems = this.cartItems.filter(item => item.id !== itemId);
-    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    // Usa o serviço para remover o item
+    this.cartService.removeItem(itemId);
   }
 
   finalizeOrder(): void {
@@ -39,8 +55,7 @@ export class Orders implements OnInit {
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 
-    // Limpa o carrinho após finalizar
-    this.cartItems = [];
-    localStorage.setItem('cart', JSON.stringify([]));
+    // Limpa o carrinho usando o serviço
+    this.cartService.clearCart();
   }
 }

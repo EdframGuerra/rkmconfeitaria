@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { InterfaceProductCard } from '../../../models/interface.product.card';
-import { InterfaceCartItem } from '../../../models/interface.cart.item';
+// Removido InterfaceCartItem pois não é mais necessário aqui
+import { CartService } from '../../../services/cart.service'; // Adicionado
 
 @Component({
   selector: 'app-carousel',
@@ -60,7 +61,7 @@ export class Carousel implements OnInit {
   selectedItem: InterfaceProductCard | null = null;
   confirmationModalOpen = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cartService: CartService) {} // Injeta CartService
 
   ngOnInit(): void {
     this.extendedItems = [...this.carouselItems, ...this.carouselItems];
@@ -75,23 +76,14 @@ export class Carousel implements OnInit {
   }
 
   makeOrder(item: InterfaceProductCard) {
-    const savedCart = localStorage.getItem('cart');
-    const cart: InterfaceCartItem[] = savedCart ? JSON.parse(savedCart) : [];
-
-    const existingItem = cart.find((i) => i.id === item.id);
-    if (existingItem) {
-      existingItem.quantity++;
-    } else {
-      cart.push({
-        id: item.id!,
-        name: item.name,
-        price: item.price,
-        image: item.image,
-        quantity: 1,
-      });
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
+    // Usa o CartService para adicionar o item
+    this.cartService.addItem({
+      id: item.id!, // Assumindo que o ID existe na InterfaceProductCard
+      name: item.name,
+      price: item.price,
+      image: item.image,
+      quantity: 1, // A lógica de incremento está dentro do serviço
+    });
 
     this.selectedItem = null;
     this.confirmationModalOpen = true;
