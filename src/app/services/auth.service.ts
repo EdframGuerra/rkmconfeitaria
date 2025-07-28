@@ -13,26 +13,31 @@ export class AuthService {
     if (email === 'admin@rkm.com' && password === 'admin123') {
       localStorage.setItem(this.tokenKey, 'rkm-admin-token');
       localStorage.setItem(this.userTypeKey, 'admin');
-      // Opcional: pode salvar nome admin aqui, se quiser
-      // localStorage.setItem('userName', 'Administrador');
       return true;
     }
 
-    // Cliente - aqui você pode colocar validação real depois
-    if (email && password) {
+    // Cliente: busca clientes cadastrados no localStorage
+    const clientsJson = localStorage.getItem('clients');
+    if (!clientsJson) return false; // Nenhum cliente cadastrado ainda
+
+    const clients = JSON.parse(clientsJson) as Array<{ email: string; password: string }>;
+
+    const client = clients.find(c => c.email === email && c.password === password);
+    if (client) {
       localStorage.setItem(this.tokenKey, 'rkm-client-token');
       localStorage.setItem(this.userTypeKey, 'client');
-      localStorage.setItem('userName', 'Cliente Comum'); // Salva nome do cliente
+      localStorage.setItem('userName', client.email);
       return true;
     }
 
+    // Se não achou admin nem cliente válido
     return false;
   }
 
   logout(): void {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.userTypeKey);
-    localStorage.removeItem('userName'); // Remove nome também no logout
+    localStorage.removeItem('userName');
     this.router.navigate(['/auth/login']);
   }
 

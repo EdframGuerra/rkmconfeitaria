@@ -15,7 +15,10 @@ export class Login implements OnInit {
   termsAccepted: boolean = false;
   isTermsModalOpen: boolean = false;
   isPrivacyModalOpen: boolean = false;
+  isLoginErrorModalOpen: boolean = false;
   title: string = 'Acesso ao Clube de Doces';
+
+  showPassword: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -28,16 +31,22 @@ export class Login implements OnInit {
     }
   }
 
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
   submitLogin(): void {
     this.errorMessage = '';
 
     if (!this.loginData.email || !this.loginData.password) {
       this.errorMessage = 'Por favor, preencha e-mail e senha.';
+      this.isLoginErrorModalOpen = true;
       return;
     }
 
     if (!this.termsAccepted) {
       this.errorMessage = 'Você deve aceitar os termos e condições.';
+      this.isLoginErrorModalOpen = true;
       return;
     }
 
@@ -46,16 +55,22 @@ export class Login implements OnInit {
       this.loginData.password
     );
 
-    if (loggedIn) {
-      const userType = this.authService.getUserType();
-      if (userType === 'admin') {
-        this.router.navigate(['/dashboard'], { state: { fromAdmin: true } });
-      } else {
-        this.router.navigate(['/home']);
-      }
-    } else {
+    if (!loggedIn) {
       this.errorMessage = 'Credenciais inválidas. Tente novamente.';
+      this.isLoginErrorModalOpen = true;
+      return;
     }
+
+    const userType = this.authService.getUserType();
+    if (userType === 'admin') {
+      this.router.navigate(['/dashboard'], { state: { fromAdmin: true } });
+    } else {
+      this.router.navigate(['/home']);
+    }
+  }
+
+  closeLoginErrorModal(): void {
+    this.isLoginErrorModalOpen = false;
   }
 
   openTermsModal(): void {

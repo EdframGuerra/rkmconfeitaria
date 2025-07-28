@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InterfaceRegisterData } from '../../../models/interface.register.data';
 
@@ -28,7 +27,24 @@ export class Register implements OnInit {
   ngOnInit(): void {}
 
   submitRegistrationForm(): void {
-    console.log('Dados do cadastro:', this.registerData);
+    // 1. Pegar clientes existentes do localStorage
+    const clientsJson = localStorage.getItem('clients');
+    let clients: InterfaceRegisterData[] = clientsJson ? JSON.parse(clientsJson) : [];
+
+    // 2. Verificar se email já existe para evitar duplicidade (opcional)
+    const exists = clients.some(c => c.email === this.registerData.email);
+    if (exists) {
+      alert('Este e-mail já está cadastrado. Por favor, use outro.');
+      return;
+    }
+
+    // 3. Adicionar novo cliente
+    clients.push(this.registerData);
+
+    // 4. Salvar novamente no localStorage
+    localStorage.setItem('clients', JSON.stringify(clients));
+
+    // 5. Abrir modal de confirmação
     this.isConfirmationModalOpen = true;
   }
 
@@ -47,7 +63,7 @@ export class Register implements OnInit {
 
   closeConfirmationModal(): void {
     this.isConfirmationModalOpen = false;
-    this.router.navigate(['/cardapio']);
+    this.router.navigate(['/auth/login']); // Volta para login após cadastro
   }
 
   togglePasswordVisibility(): void {
